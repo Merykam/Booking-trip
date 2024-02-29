@@ -1,15 +1,14 @@
 import React from "react";
 import logo from "../../public/logo.png";
 
-
 const navbar = ({ to }) => {
   return (
     <div>
-      <nav class="bg-white">
-        <div class="mx-auto max-w-7xl px-2 sm:px-6 lg:px-8">
+      <nav class="">
+        <div class="mx-auto max-w-7xl px-2 sm:px-6 lg:px-8 ">
           <div class="relative flex h-16 items-center justify-between">
-            <div class="absolute inset-y-0 left-0 flex items-center sm:hidden">
-              <button
+            {/* <div class="absolute inset-y-0 left-0 flex items-center sm:hidden justify-between"> */}
+            {/* <button
                 type="button"
                 class="relative inline-flex items-center justify-center rounded-md p-2 text-gray-400 hover:bg-gray-700 hover:text-white focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white"
                 aria-controls="mobile-menu"
@@ -47,34 +46,35 @@ const navbar = ({ to }) => {
                     d="M6 18L18 6M6 6l12 12"
                   />
                 </svg>
-              </button>
+              </button> */}
+            {/* </div> */}
+            <div class="flex  items-center">
+              <h1 className="logo">Wonderwave</h1>
+              {/* <img class="h-8 w-auto" src={logo} alt="Your Company" /> */}
             </div>
-            <div class="flex flex-1 items-center justify-center sm:items-stretch sm:justify-start">
-              <div class="flex flex-shrink-0 items-center">
-                <img class="h-8 w-auto" src={logo} alt="Your Company" />
-              </div>
-              {/* <div class="hidden sm:ml-6 sm:block">
+            <div class="flex  items-center    ">
+              <div class="hidden sm:ml-6 sm:block">
                 <div class="flex space-x-4">
                   <a
                     href="#"
-                    class="text-gray-300 hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-sm font-medium"
+                    class="text-white hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-md "
                   >
                     Team
                   </a>
                   <a
                     href="#"
-                    class="text-gray-300 hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-sm font-medium"
+                    class="text-white hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-md "
                   >
                     Projects
                   </a>
                   <a
                     href="#"
-                    class="text-gray-300 hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-sm font-medium"
+                    class="text-white hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-md "
                   >
                     Calendar
                   </a>
                 </div>
-              </div> */}
+              </div>
             </div>
             <div class="absolute inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0">
               <button
@@ -111,7 +111,7 @@ const navbar = ({ to }) => {
                   >
                     <a
                       href="#"
-                      class="bg-sky-900 text-white rounded-md px-3 py-2 text-sm font-medium"
+                      class="text-sky-900 bg-white font-bold rounded-md px-3 py-2 "
                       aria-current="page"
                     >
                       Sign up
@@ -120,7 +120,7 @@ const navbar = ({ to }) => {
 
                   <button
                     type="button"
-                    class="mx-2 bg-sky-900 text-white rounded-md px-3 py-2 text-sm font-medium"
+                    class="mx-2 text-sky-900 bg-white font-bold text-white rounded-md px-3 py-2 text-sm"
                     id="user-menu-button"
                     aria-expanded="false"
                     aria-haspopup="true"

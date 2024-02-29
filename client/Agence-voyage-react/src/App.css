@@ -1,12 +1,43 @@
+@import url('https://fonts.googleapis.com/css2?family=Yesteryear&display=swap');
 
-.container0{
+.container00 {
   background-image: url('../public/family.jpg');
-  background-position:center ;
-  width:100vw;
+  background-size: cover;
+  width: 100%; 
   height: 100vh;
- 
+  /* border-bottom-right-radius: 5rem; */
 }
-.message{
+.travel{
+  font-family: "Yesteryear", cursive;
+  color: white;
+
+}
+.logo{
+  font-family: "Yesteryear", cursive;
+  color: white;
+  font-size: 2rem;
+}
+.w-input{
+  width: 30rem;
+}
+.overlay {
+  width: 100%; 
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.4);
+  border-bottom-right-radius: 5rem; 
+}
+
+.tripTitle {
+  margin-top: 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bolder;
+  font-size: 2.5rem;
+  font-family: "Madimi One", sans-serif;
+}
+
+.message {
   font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
   color: white;
   font-style: italic;
