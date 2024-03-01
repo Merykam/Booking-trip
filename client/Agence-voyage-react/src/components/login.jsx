@@ -27,10 +27,10 @@ const Login = () => {
                   placeholder="*********"
                 />
               </div>
-              <div className="mt-8 flex justify-center text-lg text-black">
+              <div className="mt-8 flex justify-center text-lg text-white auth">
                 <button
                   type="submit"
-                  className="rounded-3xl bg-sky-900  px-10 py-2 text-white  transition-colors duration-300"
+                  className="auth bg-orange-600 rounded-3xl px-10 py-2 text-white  transition-colors duration-300"
                 >
                   Login
                 </button>

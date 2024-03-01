@@ -4,8 +4,8 @@ import logo from "../../public/logo.png";
 const navbar = ({ to }) => {
   return (
     <div>
-      <nav class="">
-        <div class="mx-auto max-w-7xl px-2 sm:px-6 lg:px-8 ">
+      <nav class="pt-5">
+        <div class="mx-auto max-w-7xl px-2 sm:px-6 lg:px-8">
           <div class="relative flex h-16 items-center justify-between">
             {/* <div class="absolute inset-y-0 left-0 flex items-center sm:hidden justify-between"> */}
             {/* <button
@@ -111,7 +111,7 @@ const navbar = ({ to }) => {
                   >
                     <a
                       href="#"
-                      class="text-sky-900 bg-white font-bold rounded-md px-3 py-2 "
+                      class="btn-auth font-bold rounded-md px-3 py-2 "
                       aria-current="page"
                     >
                       Sign up
@@ -120,13 +120,19 @@ const navbar = ({ to }) => {
 
                   <button
                     type="button"
-                    class="mx-2 text-sky-900 bg-white font-bold text-white rounded-md px-3 py-2 text-sm"
+                    class="ml-5 relative flex rounded-full bg-gray-800 text-sm focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800"
                     id="user-menu-button"
                     aria-expanded="false"
                     aria-haspopup="true"
                     onClick={() => to("login")}
                   >
-                    Sign in
+                    <a
+                      href="#"
+                      class="btn-auth font-bold rounded-md px-3 py-2 "
+                      aria-current="page"
+                    >
+                      Login
+                    </a>
                   </button>
                 </div>
               </div>
