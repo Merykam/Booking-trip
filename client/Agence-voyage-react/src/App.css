@@ -30,6 +30,8 @@
   border-bottom-right-radius: 5rem; 
 }
 
+
+
 .tripTitle {
   margin-top: 2rem;
   display: flex;
@@ -45,6 +47,23 @@
   background-color: #DF6951;
   font-weight: bold;
 } */
+
+/* 
+.serviceSection{
+  background-image: url('../public/yyy.jpg');
+  background-size: cover;
+
+  padding: 30px;
+  background-color: rgba(0, 0, 0, 0.4);
+} */
+
+.footer{
+  background-color: #DF6951;
+}
+.bg-time{
+  background-color: #DF6951;  
+}
+
 .services-title{
   font-weight: bold;
   font-size:2rem;
