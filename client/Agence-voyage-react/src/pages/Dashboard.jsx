@@ -1,12 +1,16 @@
-import React from 'react'
-import Sidebar from '../components/DashbordComponents.jsx/Sidebar'
+import React from "react";
+import Sidebar from "../components/DashbordComponents.jsx/Sidebar";
 
-const Dashboard = () => {
+const Dashboard = ({ children }) => {
   return (
-    <div>
-     <Sidebar></Sidebar>
-    </div>
-  )
-}
+    <div className="flex">
+      <div className="w-1/5">
+        <Sidebar></Sidebar>
+      </div>
 
-export default Dashboard
+      <div className="w-3/4">{children}</div>
+    </div>
+  );
+};
+
+export default Dashboard;
