@@ -1,15 +1,20 @@
 import React from "react";
-import Sidebar from "../components/DashbordComponents.jsx/Sidebar";
+import Table from "../components/DashbordComponents.jsx/table";
+import Statistics from "../components/DashbordComponents.jsx/statistics";
+import Layout from "./Layout";
 
-const Dashboard = ({ children }) => {
+
+
+const Dashboard = () => {
   return (
-    <div className="flex">
-      <div className="w-1/5">
-        <Sidebar></Sidebar>
+ 
+    <Layout>
+      <div className="">
+        <Statistics></Statistics>
+        <Table></Table>
       </div>
-
-      <div className="w-3/4">{children}</div>
-    </div>
+    </Layout>  
+  
   );
 };
 

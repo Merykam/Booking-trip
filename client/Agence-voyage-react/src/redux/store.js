@@ -1,8 +1,10 @@
 import { configureStore } from '@reduxjs/toolkit'
-import counterReducer from './counter'
+import hotelReducer from './Hotel'
+import cityReducer from './city'
 
 export default configureStore({
     reducer: {
-        counter: counterReducer,
+        hotel: hotelReducer,
+        city:cityReducer
     },
 })

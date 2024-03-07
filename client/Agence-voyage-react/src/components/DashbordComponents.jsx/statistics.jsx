@@ -1,11 +1,12 @@
 import React from "react";
 import Dashboard from "../../pages/Dashboard";
+import Table from "./table";
 
 const statistics = () => {
   return (
-    <Dashboard>
+
       <div className="">
-        <div class="grid grid-cols-1 gap-8 p-10 mt-14 lg:grid-cols-2 xl:grid-cols-4">
+        <div class=" grid grid-cols-1 gap-8 p-10 mt-14 lg:grid-cols-2 xl:grid-cols-4">
           <div class="flex items-center shadow justify-between p-4 bg-white rounded-md dark:bg-darker">
             <div>
               <h6 class="text-xs font-medium leading-none tracking-wider text-gray-500 uppercase dark:text-primary-light">
@@ -126,8 +127,11 @@ const statistics = () => {
             </div>
           </div>
         </div>
+        <div className="">
+
+        </div>
       </div>
-    </Dashboard>
+
   );
 };
 
