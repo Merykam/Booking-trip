@@ -16,8 +16,21 @@ import { useSelector, useDispatch } from "react-redux";
 import { getHotels } from "../../../redux/Hotel.js";
 import { getCities } from "../../../redux/city.js";
 import axios from "axios";
+import Joi from "joi";
 
 export default function App() {
+  const schema = Joi.object({
+    destination: Joi.string().required(),
+    hotel: Joi.string().required(),
+    depart_date: Joi.date().iso().required(),
+    trip_duration: Joi.string().required(),
+    number_of_seats: Joi.number().integer().required(),
+    price: Joi.number().required(),
+    description: Joi.string().required(),
+    status: Joi.string().required(),
+    image: Joi.any().required(),
+  });
+  const [formErrors, setFormErrors] = useState("");
   const [formData, setFormData] = useState({
     destination: "",
     hotel: "",
@@ -27,7 +40,7 @@ export default function App() {
     price: "",
     description: "",
     status: "",
-    image: null, // Store the image file directly instead of filename
+    image: null,
   });
 
   const handleInputChange = (e) => {
@@ -41,10 +54,18 @@ export default function App() {
   const handlePackageData = async (e) => {
     e.preventDefault();
     try {
-      // const formDataObj = new FormData();
-      // for (const key in formData) {
-      //   formDataObj.append(key, formData[key]);
-      // }
+      const validationResult = schema.validate(formData, { abortEarly: false });
+      if (validationResult.error) {
+        const err = validationResult.error.details;
+        setFormErrors(err[0].message);
+
+        // const errors = {};
+        // validationResult.error.details.forEach((detail) => {
+        //   errors[detail.context.key] = detail.message;
+        // });
+        // setFormErrors(errors);
+        return;
+      }
       console.log(formData);
       const response = await axios.post(
         "http://localhost:4000/api/package/insertPackage",
@@ -107,11 +128,23 @@ export default function App() {
           {(onClose) => (
             <>
               <form onSubmit={handlePackageData} encType="multipart/form-data">
+                {formErrors ? (
+                  <div
+                    className="m-5 bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative"
+                    role="alert"
+                  >
+                    <span className="block sm:inline">{formErrors}</span>
+                    <span className="absolute top-0 bottom-0 right-0 px-4 py-3"></span>
+                  </div>
+                ) : (
+                  ""
+                )}
                 <ModalHeader className="flex flex-col gap-1">
                   Add package
                 </ModalHeader>
                 <ModalBody>
                   <div className="flex gap-2">
+                 
                     <Select
                       name="destination"
                       label="Select city"
@@ -124,6 +157,13 @@ export default function App() {
                         </SelectItem>
                       ))}
                     </Select>
+                    {formErrors.destination && (
+                      <span className="text-red-500">
+                        {formErrors.destination}
+                      </span>
+                    )}
+              
+
                     <Select
                       name="hotel"
                       label="Select Hotel"
@@ -136,6 +176,9 @@ export default function App() {
                         </SelectItem>
                       ))}
                     </Select>
+                    {formErrors.hotel && (
+                      <span className="text-red-500">{formErrors.hotel}</span>
+                    )}
                   </div>
                   <div className="flex gap-2">
                     <Input
@@ -146,6 +189,11 @@ export default function App() {
                       type="date"
                       variant="bordered"
                     />
+                    {formErrors.depart_date && (
+                      <span className="text-red-500">
+                        {formErrors.depart_date}
+                      </span>
+                    )}
                     <Input
                       name="trip_duration"
                       onChange={handleInputChange}
@@ -154,6 +202,11 @@ export default function App() {
                       type="text"
                       variant="bordered"
                     />
+                    {formErrors.trip_duration && (
+                      <span className="text-red-500">
+                        {formErrors.trip_duration}
+                      </span>
+                    )}
                   </div>
                   <div className="flex gap-2">
                     <Input
@@ -164,6 +217,11 @@ export default function App() {
                       type="number"
                       variant="bordered"
                     />
+                    {formErrors.number_of_seats && (
+                      <span className="text-red-500">
+                        {formErrors.number_of_seats}
+                      </span>
+                    )}
                     <Input
                       name="price"
                       onChange={handleInputChange}
@@ -172,6 +230,9 @@ export default function App() {
                       type="number"
                       variant="bordered"
                     />
+                    {formErrors.price && (
+                      <span className="text-red-500">{formErrors.price}</span>
+                    )}
                   </div>
                   <div className="flex gap-2">
                     <Input
@@ -182,6 +243,11 @@ export default function App() {
                       type="text"
                       variant="bordered"
                     />
+                    {formErrors.description && (
+                      <span className="text-red-500">
+                        {formErrors.description}
+                      </span>
+                    )}
                     <Input
                       name="status"
                       onChange={handleInputChange}
@@ -190,6 +256,9 @@ export default function App() {
                       type="text"
                       variant="bordered"
                     />
+                    {formErrors.status && (
+                      <span className="text-red-500">{formErrors.status}</span>
+                    )}
                     {/* <Select
                       name="status"
                       label="Select satus"
@@ -209,6 +278,9 @@ export default function App() {
                     type="file"
                     variant="bordered"
                   />
+                  {formErrors.image && (
+                    <span className="text-red-500">{formErrors.image}</span>
+                  )}
                 </ModalBody>
                 <ModalFooter>
                   <Button color="danger" variant="flat" onPress={onClose}>
