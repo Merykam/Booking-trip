@@ -10,11 +10,13 @@ import Footer from '../components/footer'
 
 
 const LandingPage = () => {
+
     const [count, setCount] = useState(0);
-    const [status, setStatus] = useState("");
+
     const toggle = (state) => {
       setStatus(state);
     };
+ 
   return (
     <div>
        <div className="container00">

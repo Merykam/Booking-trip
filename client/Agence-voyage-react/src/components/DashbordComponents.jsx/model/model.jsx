@@ -19,6 +19,8 @@ import axios from "axios";
 import Joi from "joi";
 
 export default function App() {
+  const [success, setSuccess] = useState("");
+
   const schema = Joi.object({
     destination: Joi.string().required(),
     hotel: Joi.string().required(),
@@ -66,7 +68,8 @@ export default function App() {
         // setFormErrors(errors);
         return;
       }
-      console.log(formData);
+
+      // console.log(formData);
       const response = await axios.post(
         "http://localhost:4000/api/package/insertPackage",
         formData,
@@ -76,7 +79,9 @@ export default function App() {
           },
         }
       );
-      console.log(response.data);
+
+      // console.log(response.data);
+      setSuccess(response.data.message);
     } catch (error) {
       console.error(error);
     }
@@ -96,7 +101,7 @@ export default function App() {
       console.error(error);
     }
   };
-  console.log(allHotels);
+  // console.log(allHotels);
   useEffect(() => {
     showHotels();
   }, []);
@@ -113,7 +118,7 @@ export default function App() {
     }
   };
 
-  console.log(allCities);
+  // console.log(allCities);
   useEffect(() => {
     showCities();
   }, []);
@@ -128,6 +133,10 @@ export default function App() {
           {(onClose) => (
             <>
               <form onSubmit={handlePackageData} encType="multipart/form-data">
+                <ModalHeader className="flex flex-col gap-1">
+                  Add package
+                </ModalHeader>
+
                 {formErrors ? (
                   <div
                     className="m-5 bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative"
@@ -139,12 +148,20 @@ export default function App() {
                 ) : (
                   ""
                 )}
-                <ModalHeader className="flex flex-col gap-1">
-                  Add package
-                </ModalHeader>
+
+                {success ? (
+                  <div
+                    className="m-5 bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded relative"
+                    role="alert"
+                  >
+                    <span className="block sm:inline">{success}</span>
+                    <span className="absolute top-0 bottom-0 right-0 px-4 py-3"></span>
+                  </div>
+                ) : (
+                  ""
+                )}
                 <ModalBody>
                   <div className="flex gap-2">
-                 
                     <Select
                       name="destination"
                       label="Select city"
@@ -162,7 +179,6 @@ export default function App() {
                         {formErrors.destination}
                       </span>
                     )}
-              
 
                     <Select
                       name="hotel"

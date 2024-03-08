@@ -1,27 +1,40 @@
-import axios from "axios";
-import React, { useEffect } from "react";
+import axios, { all } from "axios";
+import React, { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { getPackages } from "../../redux/package";
+import { showPackages } from "../../redux/package";
+import { toast } from "react-toastify";
 
 const table = () => {
   const dispatch = useDispatch();
-  const allPackages = useSelector((state) => state.package.value);
-  const showPackages = async () => {
-    try {
-      const response = await axios.get(
-        "http://localhost:4000/api/package/getAllPackages",
-        { withCredentials: true }
-      );
-      dispatch(getPackages(response.data.packages));
-    } catch (error) {
-      console.error(error);
-    }
-  };
+  const { value: allPackages, message } = useSelector((state) => state.package);
+  const [addPackage, setAddPackage] = useState(true);
+  // const showPackages = async () => {
+  //   try {
+  //     const response = await axios.get(
+  //       "http://localhost:4000/api/package/getAllPackages",
+  //       { withCredentials: true }
+  //     );
+  //     dispatch(getPackages(response.data));
+  //     // setSuccess(response.data.message);
+  //     setAddPackage(!addPackage);
+  //   } catch (error) {
+  //     console.error(error);
+  //   }
+  // };
 
   useEffect(() => {
-    showPackages();
+    dispatch(showPackages());
   }, []);
-  console.log(allPackages);
+  // useEffect(() => {
+  //   if (message) {
+  //     console.log(message);
+  //     toast.info(message);
+  //   }
+  // }, [message]);
+  // useEffect(() => {
+  //   showPackages();
+  // }, [addPackage]);
+  // console.log(allPackages.packages);
   return (
     <div>
       <div class="p-6 px-0 ms-8">
@@ -144,23 +157,21 @@ const table = () => {
                       <p class="block antialiased font-sans text-sm leading-normal text-blue-gray-900 font-normal">
                         {singlepackage?.hotel.name}
                       </p>
-                    
                     </div>
                   </div>
                 </td>
                 <td class="p-4 border-b border-blue-gray-50">
                   <div class="flex items-center gap-3">
-                  <img
-                    src={`http://localhost:4000/uploads/${singlepackage.image}`}
-                    alt="John Michael"
-                    className="inline-block relative object-cover object-center !rounded-full w-9 h-9 rounded-md"
-                  />
+                    <img
+                      src={`http://localhost:4000/uploads/${singlepackage.image}`}
+                      alt="John Michael"
+                      className="inline-block relative object-cover object-center !rounded-full w-9 h-9 rounded-md"
+                    />
 
                     <div class="flex flex-col">
                       <p class="block antialiased font-sans text-sm leading-normal text-blue-gray-900 font-normal">
                         {singlepackage?.destination.name}
                       </p>
-                  
                     </div>
                   </div>
                 </td>
@@ -176,18 +187,20 @@ const table = () => {
                 </td>
                 <td class="p-4 border-b border-blue-gray-50">
                   <div class="w-max">
-                    {singlepackage?.status == "available" ? 
-                    <div class="relative grid items-center font-sans font-bold uppercase whitespace-nowrap select-none bg-green-500/20 text-green-600 py-1 px-2 text-xs rounded-md">
-                      <span class="">{singlepackage?.status}</span>
-                    </div> : <div class="relative grid items-center font-sans font-bold uppercase whitespace-nowrap select-none bg-red-500/20 text-red-700 py-1 px-2 text-xs rounded-md">
-                      <span class="">{singlepackage?.status}</span>
-                    </div> 
-                      }
+                    {singlepackage?.status == "available" ? (
+                      <div class="relative grid items-center font-sans font-bold uppercase whitespace-nowrap select-none bg-green-500/20 text-green-600 py-1 px-2 text-xs rounded-md">
+                        <span class="">{singlepackage?.status}</span>
+                      </div>
+                    ) : (
+                      <div class="relative grid items-center font-sans font-bold uppercase whitespace-nowrap select-none bg-red-500/20 text-red-700 py-1 px-2 text-xs rounded-md">
+                        <span class="">{singlepackage?.status}</span>
+                      </div>
+                    )}
                   </div>
                 </td>
                 <td class="p-4 border-b border-blue-gray-50">
                   <p class="block antialiased font-sans text-sm leading-normal text-blue-gray-900 font-normal">
-                  {new Date(singlepackage?.depart_date).toLocaleDateString()}
+                    {new Date(singlepackage?.depart_date).toLocaleDateString()}
                   </p>
                 </td>
                 <td class="p-4 border-b border-blue-gray-50">
