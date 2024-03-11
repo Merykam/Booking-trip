@@ -9,9 +9,10 @@ import ServiceSection from '../components/serviceSection'
 import Footer from '../components/footer'
 
 
-const LandingPage = () => {
+const LandingPage = ({children}) => {
 
     const [count, setCount] = useState(0);
+    const [status, setStatus] = useState("");
 
     const toggle = (state) => {
       setStatus(state);
@@ -22,18 +23,24 @@ const LandingPage = () => {
        <div className="container00">
         <div className="overlay">
           <Navbar to={toggle} />
+          
+          {children}
 
           {status == "" ? (
             <div className="flex justify-center items-center h-screen travel">
               <h1 className=" text-9xl">Travel with us</h1>
             </div>
+            
           ) : (
             ""
           )}
 
-          {status == "login" ? <Login></Login> : ""}
 
-          {status == "signup" ? <Signup></Signup> : ""}
+           {/* {status == "signup" ? 
+            {children}
+            : ""} */}
+
+          {/* {status == "signup" ? <Signup></Signup> : ""}  */}
         </div>
       </div>
       <Section></Section>

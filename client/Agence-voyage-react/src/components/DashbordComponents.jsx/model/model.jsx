@@ -60,16 +60,10 @@ export default function App() {
       if (validationResult.error) {
         const err = validationResult.error.details;
         setFormErrors(err[0].message);
-
-        // const errors = {};
-        // validationResult.error.details.forEach((detail) => {
-        //   errors[detail.context.key] = detail.message;
-        // });
-        // setFormErrors(errors);
         return;
       }
 
-      // console.log(formData);
+      console.log(formData);
       const response = await axios.post(
         "http://localhost:4000/api/package/insertPackage",
         formData,
@@ -77,7 +71,9 @@ export default function App() {
           headers: {
             "Content-Type": "multipart/form-data",
           },
-        }
+          withCredentials: true
+        },
+        
       );
 
       // console.log(response.data);
@@ -101,7 +97,7 @@ export default function App() {
       console.error(error);
     }
   };
-  // console.log(allHotels);
+
   useEffect(() => {
     showHotels();
   }, []);
@@ -118,7 +114,6 @@ export default function App() {
     }
   };
 
-  // console.log(allCities);
   useEffect(() => {
     showCities();
   }, []);
