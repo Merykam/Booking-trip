@@ -43,10 +43,7 @@ export const userSlice = createSlice({
     value: [],
     userInfo:[],
     errorMessage:""
-    // formData: {
-    //   email: "",
-    //   password: "",
-    // },
+
   },
   reducers: {
     setFormData: (state, action) => {
