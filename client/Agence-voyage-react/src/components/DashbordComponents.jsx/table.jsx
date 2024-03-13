@@ -8,19 +8,7 @@ const table = () => {
   const dispatch = useDispatch();
   const { value: allPackages, message } = useSelector((state) => state.package);
   const [addPackage, setAddPackage] = useState(true);
-  // const showPackages = async () => {
-  //   try {
-  //     const response = await axios.get(
-  //       "http://localhost:4000/api/package/getAllPackages",
-  //       { withCredentials: true }
-  //     );
-  //     dispatch(getPackages(response.data));
-  //     // setSuccess(response.data.message);
-  //     setAddPackage(!addPackage);
-  //   } catch (error) {
-  //     console.error(error);
-  //   }
-  // };
+  
 
   useEffect(() => {
     dispatch(showPackages());

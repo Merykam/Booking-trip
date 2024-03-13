@@ -3,11 +3,12 @@ import { useSelector, useDispatch } from "react-redux";
 import { showPackages } from "../redux/package";
 
 const card = () => {
-  const { value: allPackages, message } = useSelector((state) => state.package);
   const dispatch = useDispatch();
+  const { value: allPackages, message } = useSelector((state) => state.package);
   useEffect(() => {
     dispatch(showPackages());
   }, []);
+  // console.log(allPackages);
   return (
     <div>
       <div class="max-w-screen-xl mx-auto  sm:p-10 md:p-16">
@@ -24,7 +25,7 @@ const card = () => {
               </a>
               <a href="#!">
                 <div class="font-bold absolute bottom-0 left-0 bg-time px-4 py-2 text-white text-sm hover:bg-white hover:text-indigo-600 transition duration-500 ease-in-out">
-                {singlepackage.destination.name}
+                  {singlepackage.destination.name}
                 </div>
               </a>
 

@@ -1,8 +1,20 @@
-import React from "react";
+import React, { useEffect } from "react";
 import logo from "../../public/logo.png";
+import { useSelector, useDispatch } from "react-redux";
+import { getUserInfo } from "../redux/user";
 
 const navbar = ({ to }) => {
-  
+  const dispatch = useDispatch();
+  const getUserData = useSelector((state) => state.user.userInfo);
+
+  useEffect(() => {
+    dispatch(getUserInfo());
+  }, []);
+
+  useEffect(() => {
+    if (getUserData) console.log(getUserData[0]?.name);
+  }, [getUserData]);
+
   return (
     <div>
       <nav class="pt-5">
@@ -62,41 +74,59 @@ const navbar = ({ to }) => {
               </button>
 
               <div class="relative ml-3">
-                <div className="flex">
-                  <button
-                    type="button"
-                    class="ml-5 relative flex rounded-full bg-gray-800 text-sm focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800"
-                    id="user-menu-button"
-                    aria-expanded="false"
-                    aria-haspopup="true"
-                    
-                  >
-                    <a
-                      href="/signup"
-                      class="btn-auth font-bold rounded-md px-3 py-2 "
-                      aria-current="page"
+                {getUserData[0]?.name ? (
+                  <div className="flex">
+                    <button
+                      type="button"
+                      class="ml-5 relative flex rounded-full bg-gray-800 text-sm focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800"
+                      id="user-menu-button"
+                      aria-expanded="false"
+                      aria-haspopup="true"
                     >
-                      Sign up
-                    </a>
-                  </button>
+                      <a
+                        href=""
+                        class="btn-auth font-bold rounded-md px-3 py-2 "
+                        aria-current="page"
+                      >
+                        {getUserData[0]?.name}
+                      </a>
+                    </button>
+                  </div>
+                ) : (
+                  <div className="flex">
+                    <button
+                      type="button"
+                      class="ml-5 relative flex rounded-full bg-gray-800 text-sm focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800"
+                      id="user-menu-button"
+                      aria-expanded="false"
+                      aria-haspopup="true"
+                    >
+                      <a
+                        href="/signup"
+                        class="btn-auth font-bold rounded-md px-3 py-2 "
+                        aria-current="page"
+                      >
+                        Sign up
+                      </a>
+                    </button>
 
-                  <button
-                    type="button"
-                    class="ml-5 relative flex rounded-full bg-gray-800 text-sm focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800"
-                    id="user-menu-button"
-                    aria-expanded="false"
-                    aria-haspopup="true"
-                   
-                  >
-                    <a
-                      href="/login"
-                      class="btn-auth font-bold rounded-md px-3 py-2 "
-                      aria-current="page"
+                    <button
+                      type="button"
+                      class="ml-5 relative flex rounded-full bg-gray-800 text-sm focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800"
+                      id="user-menu-button"
+                      aria-expanded="false"
+                      aria-haspopup="true"
                     >
-                      Login
-                    </a>
-                  </button>
-                </div>
+                      <a
+                        href="/login"
+                        class="btn-auth font-bold rounded-md px-3 py-2 "
+                        aria-current="page"
+                      >
+                        Login
+                      </a>
+                    </button>
+                  </div>
+                )}
               </div>
             </div>
           </div>
