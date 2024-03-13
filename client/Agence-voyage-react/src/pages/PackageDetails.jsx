@@ -1,10 +1,10 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { showPackageById } from "../redux/package";
-import { useParams } from 'react-router-dom';
+import { useParams } from "react-router-dom";
 
 const PackageDetails = () => {
-    const { id } = useParams();
+  const { id } = useParams();
   console.log(id);
   const dispatch = useDispatch();
 
@@ -12,7 +12,7 @@ const PackageDetails = () => {
   console.log(Package);
   useEffect(() => {
     dispatch(showPackageById(id));
-  }, [Package]);
+  }, []);
 
   let slides = document.querySelectorAll(".slide-ana>div");
   let slideSayisi = slides.length;
@@ -66,7 +66,7 @@ const PackageDetails = () => {
           id="viewerBox"
           class="lg:p-10 md:p-6 p-4 bg-white dark:bg-gray-900"
         >
-          <div class="flex justify-end">
+          {/* <div class="flex justify-end">
             <button
               onclick="closeView()"
               aria-label="Close"
@@ -86,10 +86,10 @@ const PackageDetails = () => {
                 />
               </svg>
             </button>
-          </div>
-          <div class="mt-3 md:mt-4 lg:mt-0 flex flex-col lg:flex-row items-strech justify-center lg:space-x-8">
-            <div class="lg:w-1/2 flex justify-between items-strech bg-gray-50  px-2 py-20 md:py-6 md:px-6 lg:py-24">
-              <div class="flex items-center">
+          </div> */}
+          <div class="mt-3 md:mt-4 lg:mt-0 flex flex-col lg:flex-row items-strech lg:space-x-8">
+            <div class="lg:w-1/2 flex  bg-white-50 ">
+              {/* <div class="flex items-center">
                 <button
                   onclick="goPrev()"
                   aria-label="slide back"
@@ -110,33 +110,33 @@ const PackageDetails = () => {
                     />
                   </svg>
                 </button>
-              </div>
-              <div class="slider">
-                <div class="slide-ana lg:relative">
-                  <div class="flex A">
+              </div> */}
+              <div class="slider lg:w-full">
+                <div class="slide-ana lg:relative lg:w-full h-96">
+                  <div class="flex A lg:w-full">
                     <img
-                      src="https://i.ibb.co/fMGD6ZC/eugene-chystiakov-3ne-Swyntb-Q8-unsplash-1-removebg-preview-3-1.png"
+                      src={`http://localhost:4000/uploads/${Package.image}`}
                       alt="A black chair with wooden legs"
                       class="w-full h-full"
                     />
                   </div>
-                  <div class="flex B">
+                  {/* <div class="flex B">
                     <img
-                      src="https://i.ibb.co/fMGD6ZC/eugene-chystiakov-3ne-Swyntb-Q8-unsplash-1-removebg-preview-3-1.png"
+                      src={`http://localhost:4000/uploads/${Package.image}`}
                       alt="A black chair with wooden legs"
                       class="w-full h-full"
                     />
                   </div>
                   <div class="flex C">
                     <img
-                      src="https://i.ibb.co/fMGD6ZC/eugene-chystiakov-3ne-Swyntb-Q8-unsplash-1-removebg-preview-3-1.png"
+                      src={`http://localhost:4000/uploads/${Package.image}`}
                       alt="A black chair with wooden legs"
                       class="w-full h-full"
                     />
-                  </div>
+                  </div> */}
                 </div>
               </div>
-              <div class="flex items-center">
+              {/* <div class="flex items-center">
                 <button
                   onclick="goNext()"
                   aria-label="slide forward"
@@ -157,32 +157,49 @@ const PackageDetails = () => {
                     />
                   </svg>
                 </button>
-              </div>
+              </div> */}
             </div>
             <div class="lg:w-1/2 flex flex-col justify-center mt-7 md:mt-8 lg:mt-0 pb-8 lg:pb-0">
-              <h1 class="text-3xl lg:text-4xl font-semibold text-gray-800 dark:text-white">
-                Bar Stool
+              <h1 class="text-3xl lg:text-4xl font-semibold text-gray-900 dark:text-white">
+                {Package.destination?.name}
               </h1>
+
+              <div className="mt-5">
+                <p class="text-base font-bold leading-normal text-gray-600 dark:text-white mt-2">
+                  <span className="text-xl">Hotel</span> : {Package.hotel.name}
+                </p>
+                <p class="text-base font-bold leading-normal text-gray-600 dark:text-white mt-2">
+                  <span className="text-xl">Depart date</span> :{" "}
+                  {new Date(Package?.depart_date).toLocaleDateString()}
+                </p>
+                <p class="text-base font-bold leading-normal text-gray-600 dark:text-white mt-2">
+                  <span className="text-xl">Price</span> : {Package.price} $
+                </p>
+                <p class="text-base font-bold leading-normal text-gray-600 dark:text-white mt-2">
+                  <span className="text-xl">Trip duration</span> :{" "}
+                  {Package.trip_duration} Days
+                </p>
+              </div>
+
               <p class="text-base leading-normal text-gray-600 dark:text-white mt-2">
-                You don't just want to be comfortable sitting in a bar stool—you
-                want to be comfortable shimmying it up to the bar, closer to
-                your lover, or back slightly to include a third person in the
-                conversation.
+                <span className="text-xl font-bold">Plan of trip : </span>
+                {Package.description}
               </p>
+
               <p class="text-3xl font-medium text-gray-600 dark:text-white mt-8 md:mt-10"></p>
-              <div class="flex items-center flex-col md:flex-row space-y-4 md:space-y-0 md:space-x-6 lg:space-x-8 mt-8 md:mt-16">
-                <button class="w-full md:w-3/5 border border-gray-800 text-base font-medium leading-none text-white uppercase py-6 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-800 bg-gray-800 text-white dark:bg-white dark:text-gray-900 dark:hover:bg-gray-200">
-                  Add to Cart
+              <div class="flex items-center flex-col md:flex-row space-y-4 md:space-y-0 md:space-x-6 lg:space-x-8 ">
+                <button class="w-full md:w-3/5 border border-orange-800 text-base font-medium leading-none text-white uppercase py-6 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-800 bg-orange-600 text-white dark:bg-white dark:text-gray-900 dark:hover:bg-gray-200">
+                  book it now
                 </button>
-                <button class="w-full md:w-2/5 border border-gray-800 text-base font-medium leading-none text-gray-800 dark:text-white uppercase py-6 bg-transparent focus:outline-none focus:ring-2 focus:ring-offset-2 dark:bg-transparent dark:border-white dark:text-white focus:ring-gray-800 hover:bg-gray-800 hover:text-white dark:hover:bg-gray-800 ">
-                  View Details
+                <button class="w-full md:w-2/5 border border-orange-600 text-base font-medium leading-none text-orange-600 dark:text-white uppercase py-6 bg-transparent focus:outline-none focus:ring-2 focus:ring-offset-2 dark:bg-transparent dark:border-white dark:text-white focus:ring-gray-800 hover:bg-gray-800 hover:text-white hover:bg-orange-600 ">
+                  More packages
                 </button>
               </div>
-              <div class="mt-6">
+              {/* <div class="mt-6">
                 <button class="text-xl underline text-gray-800 dark:text-white dark:hover:text-gray-200 capitalize hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-800">
                   add to wishlist
                 </button>
-              </div>
+              </div> */}
             </div>
           </div>
         </div>

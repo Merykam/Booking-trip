@@ -66,10 +66,25 @@ const AppRoutes = () => {
           }
         />
         <Route
-          path="/packageDetails"
+          path="/packageDetails/:id"
           element={
             <PackageDetails></PackageDetails>
           }
+          
+        />
+          <Route
+          path="/login"
+          element={
+            <Login></Login>
+          }
+          
+        />
+          <Route
+          path="/signup"
+          element={
+            <Signup></Signup>
+          }
+          
         />
       </Routes>
     </Router>
