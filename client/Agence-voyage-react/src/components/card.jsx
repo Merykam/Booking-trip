@@ -5,12 +5,108 @@ import { showPackages } from "../redux/package";
 const card = () => {
   const dispatch = useDispatch();
   const { value: allPackages, message } = useSelector((state) => state.package);
+  // const allPackages = useSelector((state) => state.package.value);
+  console.log(allPackages);
   useEffect(() => {
     dispatch(showPackages());
   }, []);
-  // console.log(allPackages);
+  const Card = ({ dataImage, children }) => {
+    const [width, setWidth] = React.useState(0);
+    const [height, setHeight] = React.useState(0);
+    const [mouseX, setMouseX] = React.useState(0);
+    const [mouseY, setMouseY] = React.useState(0);
+    const [mouseLeaveDelay, setMouseLeaveDelay] = React.useState(null);
+    const cardRef = React.useRef(null);
+
+    React.useEffect(() => {
+      setWidth(cardRef.current.offsetWidth);
+      setHeight(cardRef.current.offsetHeight);
+    }, []);
+
+    const handleMouseMove = (e) => {
+      const rect = cardRef.current.getBoundingClientRect();
+      const offsetX = e.clientX - rect.left;
+      const offsetY = e.clientY - rect.top;
+      setMouseX(offsetX - width / 2);
+      setMouseY(offsetY - height / 2);
+    };
+
+    const handleMouseEnter = () => {
+      clearTimeout(mouseLeaveDelay);
+    };
+
+    const handleMouseLeave = () => {
+      const delay = setTimeout(() => {
+        setMouseX(0);
+        setMouseY(0);
+      }, 1000);
+      setMouseLeaveDelay(delay);
+    };
+
+    const cardStyle = {
+      transform: `rotateY(${(mouseX / width) * 30}deg) rotateX(${
+        (-mouseY / height) * 30
+      }deg)`,
+    };
+
+    const cardBgTransform = {
+      transform: `translateX(${(mouseX / width) * -40}px) translateY(${
+        (mouseY / height) * -40
+      }px)`,
+    };
+
+    const cardBgImage = {
+      backgroundImage: `url(${dataImage})`,
+    };
+
+    return (
+      <div
+        className="card-wrap"
+        onMouseMove={handleMouseMove}
+        onMouseEnter={handleMouseEnter}
+        onMouseLeave={handleMouseLeave}
+        ref={cardRef}
+      >
+        <div className="card max-w-screen-xl mx-auto mt-10" style={cardStyle}>
+          <div
+            className="card-bg"
+            style={{ ...cardBgTransform, ...cardBgImage }}
+          ></div>
+          <div className="card-info">{children}</div>
+        </div>
+      </div>
+    );
+  };
+
   return (
-    <div>
+    <>
+      <div
+        className="grid justify-center items-center grid-cols-1 md:grid-cols-4 sm:grid-cols-2 "
+        id="app"
+      >
+        {allPackages?.map((singlepackage) => (
+          <Card
+            dataImage={`http://localhost:4000/uploads/${singlepackage.image}`}
+          >
+            <h1> {singlepackage.destination.name}</h1>
+            <p className="font-bold text-xl">{singlepackage.price} $</p>
+          </Card>
+        ))}
+        {/* <Card dataImage="https://images.unsplash.com/photo-1479659929431-4342107adfc1?dpr=2&auto=compress,format&fit=crop&w=1199&h=799&q=80&cs=tinysrgb&crop=">
+      <h1>Beaches</h1>
+      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
+    </Card>
+    <Card dataImage="https://images.unsplash.com/photo-1479644025832-60dabb8be2a1?dpr=2&auto=compress,format&fit=crop&w=1199&h=799&q=80&cs=tinysrgb&crop=">
+      <h1>Trees</h1>
+      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
+    </Card>
+    <Card dataImage="https://images.unsplash.com/photo-1479621051492-5a6f9bd9e51a?dpr=2&auto=compress,format&fit=crop&w=1199&h=811&q=80&cs=tinysrgb&crop=">
+      <h1>Lakes</h1>
+      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
+    </Card>  */}
+      </div>
+
+      {/* <div>
       <div class="max-w-screen-xl mx-auto  sm:p-10 md:p-16">
         <div class="grid grid-cols-1 md:grid-cols-3 sm:grid-cols-2 gap-10">
           {allPackages?.map((singlepackage) => (
@@ -39,7 +135,8 @@ const card = () => {
           ))}
         </div>
       </div>
-    </div>
+    </div> */}
+    </>
   );
 };
 

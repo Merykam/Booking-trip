@@ -13,11 +13,12 @@ import Signup from "./src/components/signup";
 import Login from "./src/components/login";
 import {getUserInfo} from './src/redux/user'
 import { useDispatch, useSelector } from "react-redux";
+import PackageDetails from "./src/pages/PackageDetails";
 const AppRoutes = () => {
   const dispatch = useDispatch();
   const userInfo = useSelector((state)=>state.user.userInfo)
   console.log(userInfo.role);
-  // const userRole = userInfo.role;
+
   
   useEffect(() => {
     dispatch(getUserInfo());
@@ -29,7 +30,7 @@ const AppRoutes = () => {
 
   const role = userInfo[0]?.role;
 
-    const CheckRole = ({ children }) => {
+  const CheckRole = ({ children }) => {
     if (role== "0") {
       return <Navigate to="/" />;
     }
@@ -62,6 +63,12 @@ const AppRoutes = () => {
             <CheckRole>
               <Table />
             </CheckRole>
+          }
+        />
+        <Route
+          path="/packageDetails"
+          element={
+            <PackageDetails></PackageDetails>
           }
         />
       </Routes>
