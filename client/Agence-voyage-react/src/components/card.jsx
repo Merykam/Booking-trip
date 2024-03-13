@@ -1,8 +1,11 @@
 import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { showPackages } from "../redux/package";
+import { showPackageById } from "../redux/package";
+import { Navigate, useNavigate } from "react-router-dom";
 
 const card = () => {
+  const navigate = useNavigate();
   const dispatch = useDispatch();
   const { value: allPackages, message } = useSelector((state) => state.package);
   // const allPackages = useSelector((state) => state.package.value);
@@ -10,6 +13,12 @@ const card = () => {
   useEffect(() => {
     dispatch(showPackages());
   }, []);
+
+  const getPackageId = (id) => {
+    // console.log(id);
+    navigate(`/PackageDetails/${id}`);
+  };
+
   const Card = ({ dataImage, children }) => {
     const [width, setWidth] = React.useState(0);
     const [height, setHeight] = React.useState(0);
@@ -57,6 +66,9 @@ const card = () => {
 
     const cardBgImage = {
       backgroundImage: `url(${dataImage})`,
+      backgroundSize: "cover",
+      width: "300px",
+      height: "400px",
     };
 
     return (
@@ -81,14 +93,21 @@ const card = () => {
   return (
     <>
       <div
-        className="grid justify-center items-center grid-cols-1 md:grid-cols-4 sm:grid-cols-2 "
+        className="mx-auto container grid justify-center items-center grid-cols-1 md:grid-cols-4 sm:grid-cols-2 "
         id="app"
       >
         {allPackages?.map((singlepackage) => (
           <Card
             dataImage={`http://localhost:4000/uploads/${singlepackage.image}`}
           >
-            <h1> {singlepackage.destination.name}</h1>
+            <h1
+              onClick={() => {
+                getPackageId(singlepackage._id);
+              }}
+            >
+              {" "}
+              {singlepackage.destination.name}
+            </h1>
             <p className="font-bold text-xl">{singlepackage.price} $</p>
           </Card>
         ))}

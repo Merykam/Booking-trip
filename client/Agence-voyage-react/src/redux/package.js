@@ -12,18 +12,25 @@ export const showPackages = createAsyncThunk('package/get',async (a=null,thunkAP
       } catch (error) {
       return thunkAPI.rejectWithValue(error.response.data.message)
     }
-    //   dispatch(getPackages(response.data));
-    //   // setSuccess(response.data.message);
-    //   setAddPackage(!addPackage);
-    // } catch (error) {
-    //   console.error(error);
-    // }
+
   });
 
+  export const showPackageById = createAsyncThunk('Singlepackage/get',async (id,thunkAPI) => {
+    try {
+      return await axios.get(
+        `http://localhost:4000/api/package/packageById/${id}`,
+        { withCredentials: true }
+      );
+      } catch (error) {
+      return thunkAPI.rejectWithValue(error.response.data.message)
+    }
+
+  });
 export const PackageSlice = createSlice({
   name: 'package',
   initialState: {
     value:[],
+    singlePackage:[],
     message:''
   },
   reducers: {
@@ -41,7 +48,9 @@ export const PackageSlice = createSlice({
         console.log(action)
         state.message = action.payload
         console.log(state.message)
-    })
+    }).addCase(showPackageById.fulfilled, (state,action)=>{
+      state.singlePackage = action.payload.data.package
+  })
   }
 })
 

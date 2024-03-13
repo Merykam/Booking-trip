@@ -78,7 +78,12 @@ p+p {
 
 .card {
   position: relative;
-  flex: 0 0 240px;
+
+  /* top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0; */
+  /* flex: 0 0 240px; */
   width: 240px;
   height: 320px;
   background-color: #333;
