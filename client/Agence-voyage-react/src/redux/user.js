@@ -41,7 +41,8 @@ export const userSlice = createSlice({
   name: 'user',
   initialState: {
     value: [],
-    userInfo:[]
+    userInfo:[],
+    errorMessage:""
     // formData: {
     //   email: "",
     //   password: "",
@@ -56,17 +57,16 @@ export const userSlice = createSlice({
     builder
     .addCase(handleSignin.pending,(state,action)=>console.log(action))
       .addCase(handleSignin.fulfilled, (state, action) => {
-       
-        console.log(action.payload);
-       
-        
+         
         state.value = action.payload.data.data
+        console.log(state.value);
        
        
       })
       .addCase(handleSignin.rejected, (state, action) => {
-        console.log("helloo ggggg");
-        console.log(action.payload);
+    
+        console.log(action.payload.error);
+        state.errorMessage = action.payload.error
        
       })
       .addCase(getUserInfo.fulfilled,(state, action)=>{

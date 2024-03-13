@@ -5,7 +5,6 @@ import { useSelector, useDispatch } from "react-redux";
 import { handleSignin, setFormData } from "../redux/user";
 import { useNavigate } from "react-router-dom";
 const Login = () => {
- 
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const [formData, setFormData] = useState({
@@ -16,6 +15,7 @@ const Login = () => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
   const userData = useSelector((state) => state.user.value);
+  const errorMessage = useSelector((state) => state.user.errorMessage);
 
   useEffect(() => {
     if (userData) {
@@ -40,11 +40,22 @@ const Login = () => {
     console.log(formData);
   }, [formData]);
 
-
-
   return (
     <LandingPage>
       <div className="">
+        {errorMessage ? (
+          <div className="flex justify-center items-center mb-0">
+            <div
+              className="m-5 bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative"
+              role="alert"
+            >
+              <span className="block sm:inline">{errorMessage}</span>
+              <span className="absolute top-0 bottom-0 right-0 px-4 py-3"></span>
+            </div>
+          </div>
+        ) : (
+          ""
+        )}
         <div className="flex flex-col w-full mt-20 items-center justify-center   bg-no-repeat">
           <div className="rounded-xl bg-gray-800 bg-opacity-10 px-20 py-16 shadow-lg backdrop-blur-md max-sm:px-8">
             <div className="text-white">
