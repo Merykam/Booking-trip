@@ -61,10 +61,12 @@ const PackageDetails = () => {
     document.getElementById("viewerButton").classList.remove("hidden");
   }
 
-  const checkToken = () => {
+  const checkToken = (id) => {
+    console.log(id);
     if (userInfo[0]._id) {
       console.log(userInfo._id);
       console.log("you can book our package");
+      navigate(`/Booking/${id}`);
     } else {
       console.log("you can't book our package");
       navigate("/login");
@@ -152,7 +154,7 @@ const PackageDetails = () => {
               <div class="flex items-center flex-col md:flex-row space-y-4 md:space-y-0 md:space-x-6 lg:space-x-8 ">
                 <button
                   onClick={() => {
-                    checkToken();
+                    checkToken(Package?._id);
                   }}
                   class="w-full md:w-3/5 border border-orange-800 text-base font-medium leading-none text-white uppercase py-6 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-800 bg-orange-600 text-white dark:bg-white dark:text-gray-900 dark:hover:bg-gray-200"
                 >

@@ -14,6 +14,7 @@ import Login from "./src/components/login";
 import {getUserInfo} from './src/redux/user'
 import { useDispatch, useSelector } from "react-redux";
 import PackageDetails from "./src/pages/PackageDetails";
+import BookPackage from './src/pages/bookPackage'
 const AppRoutes = () => {
   const dispatch = useDispatch();
   const userInfo = useSelector((state)=>state.user.userInfo)
@@ -83,6 +84,13 @@ const AppRoutes = () => {
           path="/signup"
           element={
             <Signup></Signup>
+          }
+          
+        />
+           <Route
+          path="/Booking/:id"
+          element={
+            <BookPackage></BookPackage>
           }
           
         />

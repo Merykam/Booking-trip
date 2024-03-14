@@ -3,7 +3,8 @@ import hotelReducer from './Hotel'
 import cityReducer from './city'
 import packageReducer from './package'
 import userReducer from './user'
-import appStatusReducer from './appStatus'
+import bookingReducer from './booking'
+
 
 export default configureStore({
     reducer: {
@@ -11,6 +12,6 @@ export default configureStore({
         city:cityReducer,
         package:packageReducer,
         user:userReducer,
-        appStatus:appStatusReducer
+        booking:bookingReducer
     },
 })
