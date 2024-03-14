@@ -24,7 +24,6 @@ const navbar = ({ to }) => {
               <a href="/">
                 <h1 className="logo">Wonderwave</h1>
               </a>
-              {/* <img class="h-8 w-auto" src={logo} alt="Your Company" /> */}
             </div>
             <div class="flex  items-center    ">
               <div class="hidden sm:ml-6 sm:block">

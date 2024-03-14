@@ -15,7 +15,6 @@ const card = () => {
   }, []);
 
   const getPackageId = (id) => {
-    // console.log(id);
     navigate(`/PackageDetails/${id}`);
   };
 

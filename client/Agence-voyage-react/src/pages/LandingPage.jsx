@@ -11,9 +11,7 @@ import Footer from "../components/footer";
 
 const LandingPage = ({ children }) => {
 
-  // console.log("hello");
-  // console.log(userdata);
-  const [count, setCount] = useState(0);
+
   const [status, setStatus] = useState("");
 
   const toggle = (state) => {
@@ -36,11 +34,6 @@ const LandingPage = ({ children }) => {
             ""
           )}
 
-          {/* {status == "signup" ? 
-            {children}
-            : ""} */}
-
-          {/* {status == "signup" ? <Signup></Signup> : ""}  */}
         </div>
       </div>
       <Section></Section>
