@@ -6,7 +6,9 @@
   --hover-easing: cubic-bezier(0.23, 1, 0.32, 1);
   --return-easing: cubic-bezier(0.445, 0.05, 0.55, 0.95);
 }
-
+.bg-sky{
+  background-color: rgb(218, 238, 246);
+}
 body {
   margin: 40px 0;
   font-family: "Raleway";

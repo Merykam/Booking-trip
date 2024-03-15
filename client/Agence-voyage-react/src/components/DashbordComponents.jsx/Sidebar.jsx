@@ -1,6 +1,26 @@
+import axios from "axios";
 import React from "react";
-
+import { useNavigate } from "react-router-dom";
 const Sidebar = () => {
+  const navigate = useNavigate()
+  const logout=()=>{
+    logoutFunction()
+  }
+
+  const logoutFunction = async () => {
+    try {
+      const response = await axios.get(
+        "http://localhost:4000/api/auth/signout",
+        {withCredentials:true}
+      );
+      console.log(response);
+      navigate('/')
+
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
   return (
     <div>
       <div class="min-h-screen flex flex-col flex-auto flex-shrink-0 antialiased ">
@@ -186,7 +206,7 @@ const Sidebar = () => {
               </li>
               <li>
                 <a
-                  href="#"
+                  href="/dashboard/users"
                   class="hover:text-black relative flex flex-row items-center h-11 focus:outline-none hover:bg-gray-50 text-white border-l-4 border-transparent hover:border-indigo-500 pr-6"
                 >
                   <span class="inline-flex justify-center items-center ml-4">
@@ -280,7 +300,7 @@ const Sidebar = () => {
               </li>
               <li>
                 <a
-                  href="#"
+                  onClick={()=>{logout()}}
                   class="hover:text-black relative flex flex-row items-center h-11 focus:outline-none hover:bg-gray-50 text-white border-l-4 border-transparent hover:border-indigo-500 pr-6"
                 >
                   <span class="inline-flex justify-center items-center ml-4">
