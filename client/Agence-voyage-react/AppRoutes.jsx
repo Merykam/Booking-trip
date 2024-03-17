@@ -6,24 +6,25 @@ import {
   BrowserRouter as Router,
 } from "react-router-dom";
 import LandingPage from "./src/pages/LandingPage";
-import Dashboard from './src/pages/Dashboard'
+import Dashboard from "./src/pages/Dashboard";
 import Statistics from "./src/components/DashbordComponents.jsx/statistics";
 import Table from "./src/pages/tablePage";
 import Signup from "./src/components/signup";
 import Login from "./src/components/login";
-import {getUserInfo} from './src/redux/user'
+import { getUserInfo } from "./src/redux/user";
 import { useDispatch, useSelector } from "react-redux";
 import PackageDetails from "./src/pages/PackageDetails";
-import BookPackage from './src/pages/bookPackage'
+import BookPackage from "./src/pages/bookPackage";
 import UsersPage from "./src/pages/users";
 import Reservations from "./src/pages/reservations";
 import SuccessReservation from "./src/pages/SuccessReservation";
+import Profile from "./src/pages/profile";
+import Adminprofile from "./src/pages/adminProfile";
 const AppRoutes = () => {
   const dispatch = useDispatch();
-  const userInfo = useSelector((state)=>state.user.userInfo)
+  const userInfo = useSelector((state) => state.user.userInfo);
   console.log(userInfo.role);
 
-  
   useEffect(() => {
     dispatch(getUserInfo());
   }, []);
@@ -35,7 +36,7 @@ const AppRoutes = () => {
   const role = userInfo[0]?.role;
 
   const CheckRole = ({ children }) => {
-    if (role== "0") {
+    if (role == "0") {
       return <Navigate to="/" />;
     }
 
@@ -71,53 +72,23 @@ const AppRoutes = () => {
         />
         <Route
           path="/packageDetails/:id"
-          element={
-            <PackageDetails></PackageDetails>
-          }
-          
+          element={<PackageDetails></PackageDetails>}
         />
-          <Route
-          path="/login"
-          element={
-            <Login></Login>
-          }
-          
-        />
-          <Route
-          path="/signup"
-          element={
-            <Signup></Signup>
-          }
-          
-        />
-           <Route
-          path="/Booking/:id"
-          element={
-            <BookPackage></BookPackage>
-          }
-          
-        />
-           <Route
-          path="/dashboard/users"
-          element={
-            <UsersPage></UsersPage>
-          }
-          
-        />
-          <Route
+        <Route path="/login" element={<Login></Login>} />
+        <Route path="/signup" element={<Signup></Signup>} />
+        <Route path="/Booking/:id" element={<BookPackage></BookPackage>} />
+        <Route path="/dashboard/users" element={<UsersPage></UsersPage>} />
+        <Route
           path="/dashboard/reservations"
-          element={
-            <Reservations></Reservations>
-          }
-          
+          element={<Reservations></Reservations>}
         />
         <Route
           path="/BookingSuccess/:id"
-          element={
-            <SuccessReservation></SuccessReservation>
-          }
-          
+          element={<SuccessReservation></SuccessReservation>}
         />
+
+        <Route path="/profile" element={<Profile></Profile>} />
+        <Route path="/dashboard/profile" element={<Adminprofile></Adminprofile>} />
       </Routes>
     </Router>
   );

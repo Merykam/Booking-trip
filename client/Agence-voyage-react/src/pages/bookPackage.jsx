@@ -3,9 +3,10 @@ import { getUserInfo } from "../redux/user";
 import { useSelector, useDispatch } from "react-redux";
 import { useParams, useNavigate } from "react-router-dom";
 import { booking } from "../redux/booking";
+import Navbar from "../components/navbar";
 
 const bookPackage = () => {
-    const navigate = useNavigate()
+  const navigate = useNavigate();
   const { id } = useParams();
   console.log("this is package id" + id);
   const dispatch = useDispatch();
@@ -31,24 +32,27 @@ const bookPackage = () => {
     }
   };
 
-
   const successReservation = useSelector((state) => state.booking.value);
   console.log(successReservation.message);
 
-
   useEffect(() => {
     if (successReservation.message) {
-        console.log(successReservation.message._id);
-        const id2 = successReservation.message._id
-   
-        navigate(`/BookingSuccess/${id2}`)
-      
+      console.log(successReservation.message._id);
+      const id2 = successReservation.message._id;
+
+      navigate(`/BookingSuccess/${id2}`);
     }
-    return
+    return;
   }, [successReservation, navigate]);
 
   return (
-    <div>
+    <div
+      className="h-screen"
+      style={{
+        backgroundImage: `url('https://source.unsplash.com/1L71sPT5XKc')`,
+      }}
+    >
+      <Navbar></Navbar>
       <div class="max-w-md mx-auto mt-10 bg-white shadow-lg rounded-lg overflow-hidden">
         <div class="text-2xl py-4 px-6 bg-orange-600 text-white text-center font-bold uppercase">
           Book a Trip

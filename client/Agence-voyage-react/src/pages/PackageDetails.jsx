@@ -3,8 +3,8 @@ import { useSelector, useDispatch } from "react-redux";
 import { showPackageById } from "../redux/package";
 import { useParams } from "react-router-dom";
 import { getUserInfo } from "../redux/user";
-// import { useNavigate, Navigate } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
+import Navbar from "../components/navbar";
 
 const PackageDetails = () => {
   const navigate = useNavigate();
@@ -74,15 +74,18 @@ const PackageDetails = () => {
   };
 
   return (
-    <div className="relative">
+    <div className="relative ">
       <div
-        className="absolute bg-cover bg-center bg-no-repeat min-h-[100vh] min-w-[100vw] top-0 left-0 brightness-50"
+        className="absolute bg-cover bg-center bg-no-repeat h-full w-full top-0 left-0 brightness-50"
+        // style={{
+        //   backgroundImage: `url('http://localhost:4000/uploads/${Package.image}')`,
+        // }}
         style={{
-          backgroundImage: `url('http://localhost:4000/uploads/${Package.image}')`,
+          backgroundImage: `url('https://source.unsplash.com/1L71sPT5XKc')`,
         }}
-      >
-        hi
-      </div>
+      ></div>
+
+      <Navbar></Navbar>
 
       <div class="2xl:container 2xl:mx-auto md:py-12 lg:px-20 md:px-6 py-9 px-4 min-h-[100vh] z-50">
         <div id="viewerButton" class="hidden w-full flex justify-center">

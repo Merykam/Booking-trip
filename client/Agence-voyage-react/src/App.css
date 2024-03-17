@@ -12,7 +12,10 @@
 
 
 /* css of success reservation */
-
+/* .bg-landingpage{
+  background-image: url('../public/family.jpg');
+  background-color: black;
+} */
 .bg-success-msg{
   background-color: #ece4e4;
   height: 100vh;
@@ -238,6 +241,12 @@ p+p {
   font-weight: 700;
   text-shadow: rgba(0, 0, 0, 0.5) 0 10px 10px;
 }
+/* body{
+
+    background-image: url('https://source.unsplash.com/1L71sPT5XKc');
+    color: white;
+
+} */
 
 .container00 {
   background-image: url('../public/family.jpg');

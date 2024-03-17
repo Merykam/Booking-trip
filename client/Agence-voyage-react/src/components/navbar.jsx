@@ -83,7 +83,7 @@ const navbar = ({ to }) => {
                       aria-haspopup="true"
                     >
                       <a
-                        href=""
+                        href="/profile"
                         class="btn-auth font-bold rounded-md px-3 py-2 "
                         aria-current="page"
                       >

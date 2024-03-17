@@ -2,6 +2,7 @@ import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import TiketPdf from "./TicketPdf";
+import Navbar from "../components/navbar";
 
 const SuccessReservation = () => {
   const [bookings, setBooking] = useState([]);
@@ -26,7 +27,11 @@ const SuccessReservation = () => {
   }, []);
 
   return (
-    <div className="bg-success-msg relative">
+    <div    className="relative h-screen"
+    style={{
+      backgroundImage: `url('https://source.unsplash.com/1L71sPT5XKc')`,
+    }}>
+        <Navbar></Navbar>
       {Ticket && (
         <div
           width={"100%"}

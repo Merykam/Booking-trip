@@ -20,7 +20,7 @@ const LandingPage = ({ children }) => {
 
   return (
     <div>
-      <div className="container00">
+      <div className="container00"  >
         <div className="overlay">
           <Navbar to={toggle} />
 
