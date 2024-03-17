@@ -1,10 +1,11 @@
 import React, { useEffect, useState } from "react";
 import { getUserInfo } from "../redux/user";
 import { useSelector, useDispatch } from "react-redux";
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import { booking } from "../redux/booking";
 
 const bookPackage = () => {
+    const navigate = useNavigate()
   const { id } = useParams();
   console.log("this is package id" + id);
   const dispatch = useDispatch();
@@ -29,6 +30,22 @@ const bookPackage = () => {
       console.log(error);
     }
   };
+
+
+  const successReservation = useSelector((state) => state.booking.value);
+  console.log(successReservation.message);
+
+
+  useEffect(() => {
+    if (successReservation.message) {
+        console.log(successReservation.message._id);
+        const id2 = successReservation.message._id
+   
+        navigate(`/BookingSuccess/${id2}`)
+      
+    }
+    return
+  }, [successReservation, navigate]);
 
   return (
     <div>

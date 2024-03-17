@@ -17,6 +17,7 @@ import PackageDetails from "./src/pages/PackageDetails";
 import BookPackage from './src/pages/bookPackage'
 import UsersPage from "./src/pages/users";
 import Reservations from "./src/pages/reservations";
+import SuccessReservation from "./src/pages/SuccessReservation";
 const AppRoutes = () => {
   const dispatch = useDispatch();
   const userInfo = useSelector((state)=>state.user.userInfo)
@@ -107,6 +108,13 @@ const AppRoutes = () => {
           path="/dashboard/reservations"
           element={
             <Reservations></Reservations>
+          }
+          
+        />
+        <Route
+          path="/BookingSuccess/:id"
+          element={
+            <SuccessReservation></SuccessReservation>
           }
           
         />
