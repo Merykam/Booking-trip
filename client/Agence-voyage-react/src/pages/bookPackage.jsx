@@ -31,16 +31,19 @@ const bookPackage = () => {
       console.log(error);
     }
   };
+  const [error, setError]=useState("")
 
   const successReservation = useSelector((state) => state.booking.value);
   console.log(successReservation.message);
 
   useEffect(() => {
-    if (successReservation.message) {
+    if (successReservation.success == true) {
       console.log(successReservation.message._id);
       const id2 = successReservation.message._id;
 
       navigate(`/BookingSuccess/${id2}`);
+    }else{
+      setError(successReservation.message)
     }
     return;
   }, [successReservation, navigate]);
@@ -53,7 +56,23 @@ const bookPackage = () => {
       }}
     >
       <Navbar></Navbar>
+
+      {error ? (
+          <div className="flex justify-center items-center mb-0">
+            <div
+              className="m-5 bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative"
+              role="alert"
+            >
+              <span className="block sm:inline">{error}</span>
+              <span className="absolute top-0 bottom-0 right-0 px-4 py-3"></span>
+            </div>
+          </div>
+        ) : (
+          ""
+        )}
       <div class="max-w-md mx-auto mt-10 bg-white shadow-lg rounded-lg overflow-hidden">
+
+      
         <div class="text-2xl py-4 px-6 bg-orange-600 text-white text-center font-bold uppercase">
           Book a Trip
         </div>
