@@ -20,6 +20,7 @@ import Reservations from "./src/pages/reservations";
 import SuccessReservation from "./src/pages/SuccessReservation";
 import Profile from "./src/pages/profile";
 import Adminprofile from "./src/pages/adminProfile";
+import EditPackage from "./src/pages/EditPackage";
 const AppRoutes = () => {
   const dispatch = useDispatch();
   const userInfo = useSelector((state) => state.user.userInfo);
@@ -88,7 +89,14 @@ const AppRoutes = () => {
         />
 
         <Route path="/profile" element={<Profile></Profile>} />
-        <Route path="/dashboard/profile" element={<Adminprofile></Adminprofile>} />
+        <Route
+          path="/dashboard/profile"
+          element={<Adminprofile></Adminprofile>}
+        />
+        <Route
+          path="/dashboard/edit/:id"
+          element={<EditPackage></EditPackage>}
+        />
       </Routes>
     </Router>
   );

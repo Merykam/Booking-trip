@@ -14,6 +14,12 @@ const card = () => {
     dispatch(showPackages());
   }, []);
 
+  const filtredPackages = allPackages.filter(filter1);
+
+function filter1(package1) {
+  return package1.status=="available"
+}
+
   const getPackageId = (id) => {
     navigate(`/PackageDetails/${id}`);
   };
@@ -95,7 +101,7 @@ const card = () => {
         className="mx-auto container grid justify-center items-center grid-cols-1 md:grid-cols-4 sm:grid-cols-2 "
         id="app"
       >
-        {allPackages?.map((singlepackage) => (
+        {filtredPackages?.map((singlepackage) => (
           <Card
             dataImage={`http://localhost:4000/uploads/${singlepackage.image}`}
           >

@@ -118,6 +118,11 @@ export default function App() {
     showCities();
   }, []);
 
+  useEffect(() => {
+    console.log(formData);
+  }, [formData]);
+
+
   return (
     <>
       <Button onPress={onOpen} color="primary">
