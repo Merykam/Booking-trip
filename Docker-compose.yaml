@@ -1,0 +1,27 @@
+version: '3'
+
+services:
+  server:
+    build: 
+      context: "./server/Agence-voyage"
+      dockerfile: Dockerfile
+    image: image-server 
+    container_name: server
+    ports:
+      - "4000:4000"
+    working_dir: /usr/src/app
+    command: ["npm", "run", "dev"]
+  
+
+
+  client:
+    build: 
+        context: "./client/Agence-voyage-react"
+        dockerfile: Dockerfile
+    image: image-client 
+    container_name: client
+    ports:
+      - "5173:5173"
+    working_dir: /usr/src/app
+    command: ["npm", "run", "dev"]
+  

@@ -8,7 +8,6 @@ const card = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const { value: allPackages, message } = useSelector((state) => state.package);
-  // const allPackages = useSelector((state) => state.package.value);
   console.log(allPackages);
   useEffect(() => {
     dispatch(showPackages());
@@ -16,15 +15,15 @@ const card = () => {
 
   const filtredPackages = allPackages.filter(filter1);
 
-function filter1(package1) {
-  return package1.status=="available"
-}
+  function filter1(package1) {
+    return package1.status == "available";
+  }
 
   const getPackageId = (id) => {
     navigate(`/PackageDetails/${id}`);
   };
 
-  const Card = ({ dataImage, children }) => {
+  const Card = ({ img, children }) => {
     const [width, setWidth] = React.useState(0);
     const [height, setHeight] = React.useState(0);
     const [mouseX, setMouseX] = React.useState(0);
@@ -69,12 +68,12 @@ function filter1(package1) {
       }px)`,
     };
 
-    const cardBgImage = {
-      backgroundImage: `url(${dataImage})`,
-      backgroundSize: "cover",
-      width: "300px",
-      height: "400px",
-    };
+    // const cardBgImage = {
+    //   backgroundImage: `url(${dataImage})`,
+    //   backgroundSize: "cover",
+    //   width: "300px",
+    //   height: "400px",
+    // };
 
     return (
       <div
@@ -85,10 +84,16 @@ function filter1(package1) {
         ref={cardRef}
       >
         <div className="card max-w-screen-xl mx-auto mt-10" style={cardStyle}>
-          <div
-            className="card-bg"
-            style={{ ...cardBgTransform, ...cardBgImage }}
-          ></div>
+          {/* <div
+            className="card-bg lg:w-full"
+            // style={{ ...cardBgTransform, ...cardBgImage }}
+          > */}
+            <img
+              src={img}
+              alt="black chair with wooden legs"
+              class="w-full h-full"
+            />
+          {/* </div> */}
           <div className="card-info">{children}</div>
         </div>
       </div>
@@ -103,7 +108,7 @@ function filter1(package1) {
       >
         {filtredPackages?.map((singlepackage) => (
           <Card
-            dataImage={`http://localhost:4000/uploads/${singlepackage.image}`}
+            img={`http://localhost:4000/uploads/${singlepackage.image}`}
           >
             <h1
               onClick={() => {

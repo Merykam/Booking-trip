@@ -12,6 +12,7 @@ const UpdatePackage = () => {
   const [selectedCity, setSelectedCity] = useState("");
   const [selectedHotel, setSelectedHotel] = useState("");
   const [selectedImage, setSelectedImage] = useState(null);
+  const [success, setSuccess] = useState("");
   const [formData, setFormData] = useState({
     destination: "",
     hotel: "",
@@ -110,10 +111,11 @@ const UpdatePackage = () => {
           headers: {
             "Content-Type": "multipart/form-data",
           },
-          withCredentials: true
-        },
+          withCredentials: true,
+        }
       );
       console.log("Update successful:", response.data);
+      setSuccess(response.data.message);
     } catch (error) {
       console.log("Update error:", error.message);
     }
@@ -121,6 +123,17 @@ const UpdatePackage = () => {
   return (
     <Layout>
       <div className="bg-white border border-4 rounded-lg shadow relative m-10">
+        {success && (
+          <div className="flex justify-center items-center mb-4">
+            <div
+              className="w-60 bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded relative"
+              role="alert"
+            >
+              <span className="block sm:inline">{success}</span>
+              <span className="absolute top-0 bottom-0 right-0 px-4 py-3"></span>
+            </div>
+          </div>
+        )}
         <div className="flex items-start justify-between p-5 border-b rounded-t">
           <h3 className="text-xl font-semibold">Edit package</h3>
         </div>

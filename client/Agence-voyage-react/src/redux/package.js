@@ -31,7 +31,8 @@ export const PackageSlice = createSlice({
   initialState: {
     value:[],
     singlePackage:[],
-    message:''
+    message:'',
+    display:false
   },
   reducers: {
  
@@ -39,6 +40,12 @@ export const PackageSlice = createSlice({
     state.value=[];
     state.message='';
    }
+,
+
+  setDisplay : (state, action)=>{
+  state.display = action.payload
+  }
+
    
   },
   extraReducers:(builder)=>{
@@ -49,11 +56,12 @@ export const PackageSlice = createSlice({
         state.message = action.payload
         console.log(state.message)
     }).addCase(showPackageById.fulfilled, (state,action)=>{
-      state.singlePackage = action.payload.data.package
+      state.singlePackage = action.payload.data.package4
   })
   }
 })
 
 
 export const { getPackages } = PackageSlice.actions
+export const { setDisplay } = PackageSlice.actions
 export default PackageSlice.reducer

@@ -15,11 +15,13 @@ import { Select, SelectItem } from "@nextui-org/react";
 import { useSelector, useDispatch } from "react-redux";
 import { getHotels } from "../../../redux/Hotel.js";
 import { getCities } from "../../../redux/city.js";
+import {setDisplay} from '../../../redux/package.js'
 import axios from "axios";
 import Joi from "joi";
 
 export default function App() {
   const [success, setSuccess] = useState("");
+  const [selectedStatus, setSelectedStatus] = useState("");
 
   const schema = Joi.object({
     destination: Joi.string().required(),
@@ -45,12 +47,23 @@ export default function App() {
     image: null,
   });
 
+  const display = useSelector((state) => state.package.display);
+useEffect(()=>{console.log(display);},[display])
+
   const handleInputChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
   const handleImageChange = (e) => {
     setFormData({ ...formData, image: e.target.files[0] });
+  };
+
+  const handleStatusChange = (e) => {
+    setSelectedStatus(e.target.value);
+
+    setFormData({ ...formData, status: e.target.value });
+    console.log(selectedStatus);
+    console.log(e.target.value);
   };
 
   const handlePackageData = async (e) => {
@@ -71,12 +84,13 @@ export default function App() {
           headers: {
             "Content-Type": "multipart/form-data",
           },
-          withCredentials: true
-        },
-        
+          withCredentials: true,
+        }
       );
 
-      // console.log(response.data);
+      dispatch(setDisplay(!display))
+
+
       setSuccess(response.data.message);
     } catch (error) {
       console.error(error);
@@ -86,6 +100,7 @@ export default function App() {
   const dispatch = useDispatch();
   const allHotels = useSelector((state) => state.hotel.value);
   const allCities = useSelector((state) => state.city.value);
+
   const showHotels = async () => {
     try {
       const response = await axios.get(
@@ -121,7 +136,6 @@ export default function App() {
   useEffect(() => {
     console.log(formData);
   }, [formData]);
-
 
   return (
     <>
@@ -215,7 +229,7 @@ export default function App() {
                       onChange={handleInputChange}
                       label="Duration"
                       placeholder="Enter duration"
-                      type="text"
+                      type="number"
                       variant="bordered"
                     />
                     {formErrors.trip_duration && (
@@ -264,26 +278,29 @@ export default function App() {
                         {formErrors.description}
                       </span>
                     )}
-                    <Input
+                    {/* <Input
                       name="status"
                       onChange={handleInputChange}
                       label="status"
                       placeholder="Enter description of trip"
                       type="text"
                       variant="bordered"
-                    />
+                    /> */}
+
+                    <select
+                      name="status"
+                      label="Select status"
+                      className="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-cyan-600 focus:border-cyan-600 block w-full p-2.5"
+                      value={selectedStatus}
+                      onChange={handleStatusChange}
+                    >
+                      <option value="available">Available</option>
+                      <option value="saturated">Saturated</option>
+                    </select>
+
                     {formErrors.status && (
                       <span className="text-red-500">{formErrors.status}</span>
                     )}
-                    {/* <Select
-                      name="status"
-                      label="Select satus"
-                      className=""
-                      onChange={handleInputChange}
-                    >
-                      <SelectItem key="">available</SelectItem>
-                      <SelectItem key="">saturated</SelectItem>
-                    </Select> */}
                   </div>
 
                   <Input

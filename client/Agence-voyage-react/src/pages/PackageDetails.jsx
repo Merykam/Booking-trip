@@ -15,7 +15,7 @@ const PackageDetails = () => {
   }, []);
 
   const { id } = useParams();
-  console.log(id);
+
   const dispatch = useDispatch();
 
   const { singlePackage: Package } = useSelector((state) => state.package);
@@ -63,6 +63,7 @@ const PackageDetails = () => {
 
   const checkToken = (id) => {
     console.log(id);
+    console.log(userInfo[0]);
     if (userInfo[0]._id) {
       console.log(userInfo._id);
       console.log("you can book our package");

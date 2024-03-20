@@ -7,12 +7,13 @@ import { useNavigate } from "react-router-dom";
 const table = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
+  const display = useSelector((state) => state.package.display);
   const { value: allPackages, message } = useSelector((state) => state.package);
   const [addPackage, setAddPackage] = useState(true);
 
   useEffect(() => {
     dispatch(showPackages());
-  }, []);
+  }, [display]);
 
   const getPackageId = (id) => {
     
