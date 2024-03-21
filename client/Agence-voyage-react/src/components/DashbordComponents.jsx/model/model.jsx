@@ -15,12 +15,16 @@ import { Select, SelectItem } from "@nextui-org/react";
 import { useSelector, useDispatch } from "react-redux";
 import { getHotels } from "../../../redux/Hotel.js";
 import { getCities } from "../../../redux/city.js";
-import {setDisplay} from '../../../redux/package.js'
+import { setDisplay } from "../../../redux/package.js";
 import axios from "axios";
 import Joi from "joi";
 
 export default function App() {
   const [success, setSuccess] = useState("");
+  const [error, setError]=useState('');
+  console.log("error : "+error);
+
+
   const [selectedStatus, setSelectedStatus] = useState("");
 
   const schema = Joi.object({
@@ -48,7 +52,9 @@ export default function App() {
   });
 
   const display = useSelector((state) => state.package.display);
-useEffect(()=>{console.log(display);},[display])
+  useEffect(() => {
+    console.log(display);
+  }, [display]);
 
   const handleInputChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -88,11 +94,11 @@ useEffect(()=>{console.log(display);},[display])
         }
       );
 
-      dispatch(setDisplay(!display))
-
+      dispatch(setDisplay(!display));
 
       setSuccess(response.data.message);
     } catch (error) {
+      setError(error.response.data.error);
       console.error(error);
     }
   };
@@ -109,6 +115,7 @@ useEffect(()=>{console.log(display);},[display])
       );
       dispatch(getHotels(response.data.hotels));
     } catch (error) {
+     
       console.error(error);
     }
   };
@@ -157,6 +164,19 @@ useEffect(()=>{console.log(display);},[display])
                     role="alert"
                   >
                     <span className="block sm:inline">{formErrors}</span>
+                    <span className="absolute top-0 bottom-0 right-0 px-4 py-3"></span>
+                  </div>
+                ) : (
+                  ""
+                )}
+
+
+            {error ? (
+                  <div
+                    className="m-5 bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative"
+                    role="alert"
+                  >
+                    <span className="block sm:inline">{error}</span>
                     <span className="absolute top-0 bottom-0 right-0 px-4 py-3"></span>
                   </div>
                 ) : (

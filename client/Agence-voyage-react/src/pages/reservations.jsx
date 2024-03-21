@@ -154,7 +154,7 @@ const Reservations = () => {
 
                       <div class="flex flex-col">
                         <p class="font-bold block antialiased  text-sm leading-normal text-blue-gray-900 ">
-                          {booking?.user_id.name}
+                          {booking?.user_id?.name}
                         </p>
                       </div>
                     </div>
@@ -163,7 +163,7 @@ const Reservations = () => {
                     <div class="flex items-center gap-3">
                       <div class="flex flex-col">
                         <p class="block antialiased font-sans text-sm leading-normal text-blue-gray-900 font-normal">
-                          {booking?.user_id.email}
+                          {booking?.user_id?.email}
                         </p>
                       </div>
                     </div>
@@ -182,7 +182,7 @@ const Reservations = () => {
                     <div class="w-max">
                       <div class="relative grid items-center font-sans font-bold uppercase whitespace-nowrap select-none bg-orange-100 text-orange-700 py-1 px-2 text-xs rounded-md">
                         <span class="">
-                          {booking?.package_id.destination.name}
+                          {booking?.package_id?.destination?.name}
                         </span>
                       </div>
                     </div>
@@ -219,7 +219,7 @@ const Reservations = () => {
                           //   }}
                           class="relative grid items-center font-sans font-bold uppercase whitespace-nowrap select-none bg-sky-500/20 text-sky-600 py-2 px-2 text-xs rounded-md"
                         >
-                          <span class="">{booking.total_price} $</span>
+                          <span class="">{booking?.total_price} $</span>
                         </div>
                       </span>
                     </button>

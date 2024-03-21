@@ -259,13 +259,18 @@ p+p {
   font-family: "Yesteryear", cursive;
   color: white;
 
-}
+}a
 .logo{
   font-family: "Yesteryear", cursive;
   color: #DF6951;
   /* color: #c3c827; */
+  /* color: #ba3e25; */
 
   font-size: 2rem;
+}
+.bg-color-btn{
+  background-color: #DF6951;
+
 }
 .w-input{
   width: 30rem;

@@ -25,6 +25,15 @@ const UpdatePackage = () => {
     image: null,
   });
 
+
+  const handleStatusChange = (e) => {
+    setSelectedStatus(e.target.value);
+
+    setFormData({ ...formData, status: e.target.value });
+  };
+
+  const [error, setError] = useState("");
+
   const showCities = async () => {
     try {
       const response = await axios.get(
@@ -51,6 +60,7 @@ const UpdatePackage = () => {
 
   const dispatch = useDispatch();
   const { singlePackage: Package } = useSelector((state) => state.package);
+  const [selectedStatus, setSelectedStatus] = useState(Package?.status);
 
   useEffect(() => {
     showCities();
@@ -117,6 +127,7 @@ const UpdatePackage = () => {
       console.log("Update successful:", response.data);
       setSuccess(response.data.message);
     } catch (error) {
+      setError(error.response.data.error);
       console.log("Update error:", error.message);
     }
   };
@@ -133,6 +144,18 @@ const UpdatePackage = () => {
               <span className="absolute top-0 bottom-0 right-0 px-4 py-3"></span>
             </div>
           </div>
+        )}
+
+        {error ? (
+          <div
+            className="m-5 bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative"
+            role="alert"
+          >
+            <span className="block sm:inline">{error}</span>
+            <span className="absolute top-0 bottom-0 right-0 px-4 py-3"></span>
+          </div>
+        ) : (
+          ""
         )}
         <div className="flex items-start justify-between p-5 border-b rounded-t">
           <h3 className="text-xl font-semibold">Edit package</h3>
@@ -200,9 +223,9 @@ const UpdatePackage = () => {
                   defaultValue={Package?.depart_date}
                   onChange={handleInputChange}
                   id="brand"
-                  class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-cyan-600 focus:border-cyan-600 block w-full p-2.5"
+                  className="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-cyan-600 focus:border-cyan-600 block w-full p-2.5"
                   placeholder="Apple"
-                  required=""
+                  required
                 />
               </div>
               <div class="col-span-6 sm:col-span-3">
@@ -266,7 +289,7 @@ const UpdatePackage = () => {
                 >
                   status
                 </label>
-                <input
+                {/* <input
                   type="text"
                   name="status"
                   defaultValue={Package?.status}
@@ -274,7 +297,18 @@ const UpdatePackage = () => {
                   class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-cyan-600 focus:border-cyan-600 block w-full p-2.5"
                   placeholder="$2300"
                   required=""
-                />
+                /> */}
+
+                <select
+                  name="status"
+                  label="Select status"
+                  className="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-cyan-600 focus:border-cyan-600 block w-full p-2.5"
+                  defaultValue={selectedStatus}
+                  onChange={handleStatusChange}
+                >
+                  <option value="available">Available</option>
+                  <option value="saturated">Saturated</option>
+                </select>
               </div>
 
               <div class="col-span-6 sm:col-span-3">

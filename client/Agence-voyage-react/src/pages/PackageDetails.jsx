@@ -43,24 +43,6 @@ const PackageDetails = () => {
     }
   }
 
-  function goPrev() {
-    loop--;
-    for (let index = 0; index < slides.length; index++) {
-      const element = slides[index];
-      element.style.transform =
-        "translateX(" + 100 * (index - (loop % slideSayisi)) + "%)";
-    }
-  }
-
-  function openView() {
-    document.getElementById("viewerButton").classList.add("hidden");
-    document.getElementById("viewerBox").classList.remove("hidden");
-  }
-  function closeView() {
-    document.getElementById("viewerBox").classList.add("hidden");
-    document.getElementById("viewerButton").classList.remove("hidden");
-  }
-
   const checkToken = (id) => {
     console.log(id);
     console.log(userInfo[0]);
@@ -82,12 +64,12 @@ const PackageDetails = () => {
         //   backgroundImage: `url('http://localhost:4000/uploads/${Package.image}')`,
         // }}
         style={{
-          backgroundImage: `url('https://source.unsplash.com/1L71sPT5XKc')`,
+          backgroundImage: `url('http://localhost:4000/uploads/${Package.image}')`,
         }}
       ></div>
 
-      <Navbar></Navbar>
-
+      <Navbar />
+      {/* 
       <div class="2xl:container 2xl:mx-auto md:py-12 lg:px-20 md:px-6 py-9 px-4 min-h-[100vh] z-50">
         <div id="viewerButton" class="hidden w-full flex justify-center">
           <button
@@ -109,20 +91,6 @@ const PackageDetails = () => {
                       class="w-full h-full"
                     />
                   </div>
-                  {/* <div class="flex B">
-                    <img
-                      src={`http://localhost:4000/uploads/${Package.image}`}
-                      alt="A black chair with wooden legs"
-                      class="w-full h-full"
-                    />
-                  </div>
-                  <div class="flex C">
-                    <img
-                      src={`http://localhost:4000/uploads/${Package.image}`}
-                      alt="A black chair with wooden legs"
-                      class="w-full h-full"
-                    />
-                  </div> */}
                 </div>
               </div>
             </div>
@@ -168,6 +136,59 @@ const PackageDetails = () => {
                   More packages
                 </button>
               </div>
+            </div>
+          </div>
+        </div>
+      </div> */}
+
+      <div class="px-2 py-20 w-full flex justify-center relative">
+        <div class="bg-white lg:mx-8 lg:flex lg:max-w-5xl lg:shadow-lg rounded-lg">
+          <div class="lg:w-1/2">
+            <div
+              class="lg:scale-110 h-80 bg-cover lg:h-full rounded-b-none border lg:rounded-lg"
+              style={{
+                backgroundImage: `url('http://localhost:4000/uploads/${Package.image}')`,
+                backgroundSize: "cover",
+              }}
+            ></div>
+          </div>
+          <div class="py-12 px-6 lg:px-12 max-w-xl lg:max-w-5xl lg:w-1/2 rounded-t-none border lg:rounded-lg">
+            <h2 class="text-3xl text-gray-800 font-bold">
+              {Package?.destination?.name}
+              {/* <span class="text-indigo-600">Choices</span> */}
+            </h2>
+            <p class="mt-4 text-black w-90">
+              The "Eco-Tracker" project aims to create a web-based platform that
+              encourages individuals to adopt sustainable lifestyle choices and
+            </p>
+            <div className="mt-5">
+              <p class="text-base leading-normal text-black dark:text-white mt-2">
+                <span className="">Hotel</span> : {Package?.hotel?.name}
+              </p>
+              <p class="text-base  leading-normal text-black dark:text-white mt-2">
+                <span className="">Depart date</span> :{" "}
+                {new Date(Package?.depart_date).toLocaleDateString()}
+              </p>
+              <p class="text-base  leading-normal text-black dark:text-white mt-2">
+                <span className="">Price</span> : {Package?.price} $
+              </p>
+              <p class="text-base leading-normal text-black dark:text-white mt-2">
+                <span className="">Trip duration</span> :{" "}
+                {Package.trip_duration} Days
+              </p>
+            </div>
+            <div
+              class="mt-8"
+              onClick={() => {
+                checkToken(Package?._id);
+              }}
+            >
+              <a
+                href="#"
+                class="bg-orange-600 text-gray-100 px-5 py-3 font-semibold rounded"
+              >
+                Booking now
+              </a>
             </div>
           </div>
         </div>

@@ -8,10 +8,7 @@ import Section from "../components/section";
 import ServiceSection from "../components/serviceSection";
 import Footer from "../components/footer";
 
-
 const LandingPage = ({ children }) => {
-
-
   const [status, setStatus] = useState("");
 
   const toggle = (state) => {
@@ -20,7 +17,7 @@ const LandingPage = ({ children }) => {
 
   return (
     <div>
-      <div className="container00"  >
+      <div className="container00">
         <div className="overlay">
           <Navbar to={toggle} />
 
@@ -28,23 +25,22 @@ const LandingPage = ({ children }) => {
 
           {status == "" ? (
             <div className="flex justify-center items-center h-screen travel">
-              <h1 className=" text-9xl">Travel with us</h1>
+              <h1 className="text-9xl text-center">Travel with us</h1>
             </div>
           ) : (
             ""
           )}
-
         </div>
       </div>
       <Section></Section>
       <ServiceSection></ServiceSection>
       <div className="tripTitle">
-        <h1 className="">Our International Packages</h1>
+        <h1 className="text-center">Our International Packages</h1>
       </div>
 
       <Card></Card>
 
-      <Footer></Footer>
+      <Footer></Footer> 
     </div>
   );
 };
