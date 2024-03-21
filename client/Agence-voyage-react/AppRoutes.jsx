@@ -21,6 +21,7 @@ import SuccessReservation from "./src/pages/SuccessReservation";
 import Profile from "./src/pages/profile";
 import Adminprofile from "./src/pages/adminProfile";
 import EditPackage from "./src/pages/EditPackage";
+import Verify from './src/components/verify'
 const AppRoutes = () => {
   const dispatch = useDispatch();
   const userInfo = useSelector((state) => state.user.userInfo);
@@ -96,6 +97,10 @@ const AppRoutes = () => {
         <Route
           path="/dashboard/edit/:id"
           element={<EditPackage></EditPackage>}
+        />
+         <Route
+          path="/verify/:id"
+          element={<Verify></Verify>}
         />
       </Routes>
     </Router>
