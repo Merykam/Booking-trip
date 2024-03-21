@@ -230,6 +230,12 @@ const table = () => {
                   >
                     delete
                   </button>
+                  <a
+                    href={`/dashboard/packageDetails/${singlepackage?._id}`}
+                    className="bg-black-600 px-2 text-black rounded"
+                  >
+                    Details
+                  </a>
                 </td>
               </tr>
             ))}

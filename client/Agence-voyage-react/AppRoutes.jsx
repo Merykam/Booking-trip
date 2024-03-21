@@ -22,6 +22,7 @@ import Profile from "./src/pages/profile";
 import Adminprofile from "./src/pages/adminProfile";
 import EditPackage from "./src/pages/EditPackage";
 import Verify from './src/components/verify'
+import PackageDetailsDashboard from "./src/pages/packageDetailsAdmin";
 const AppRoutes = () => {
   const dispatch = useDispatch();
   const userInfo = useSelector((state) => state.user.userInfo);
@@ -87,6 +88,11 @@ const AppRoutes = () => {
         <Route
           path="/BookingSuccess/:id"
           element={<SuccessReservation></SuccessReservation>}
+        />
+
+          <Route
+          path="dashboard/packageDetails/:id"
+          element={<PackageDetailsDashboard></PackageDetailsDashboard>}
         />
 
         <Route path="/profile" element={<Profile></Profile>} />
