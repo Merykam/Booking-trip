@@ -21,11 +21,11 @@ jobs:
       - name: Install dependencies
         # working-directory: "server/Agence-voyage"
         run: |
-        ls 
-        cd server
-        ls
-        cd Agence-voyage
-        ls
+          ls 
+          cd server
+          ls
+          cd Agence-voyage
+          ls
 
       - name: Run tests
         working-directory: "server/Agence-voyage"
