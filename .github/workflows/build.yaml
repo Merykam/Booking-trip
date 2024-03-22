@@ -30,6 +30,7 @@ jobs:
       - name: Run tests
         # working-directory: server
         run: |
+          cd server
           ls
 
       - name: Log in to Docker Hub
