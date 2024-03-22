@@ -29,7 +29,11 @@ jobs:
 
       - name: Run tests
         working-directory: server
-        run: cd Agence-voyage && npm test
+        run: |
+          ls
+          cd Agence-voyage
+          ls
+          npm test
 
       - name: Log in to Docker Hub
         run: docker login -u marykam1 --password-stdin
