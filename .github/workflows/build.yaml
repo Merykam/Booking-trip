@@ -19,8 +19,13 @@ jobs:
           node-version: "20.11.0"
 
       - name: Install dependencies
-        working-directory: "server/Agence-voyage"
-        run: npm install
+        # working-directory: "server/Agence-voyage"
+        run: |
+        ls 
+        cd server
+        ls
+        cd Agence-voyage
+        ls
 
       - name: Run tests
         working-directory: "server/Agence-voyage"
