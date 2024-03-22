@@ -5,8 +5,6 @@ const jwt = require('jsonwebtoken');
 const sendMail = require('../utils/sendMail').sendMail
 
 
- 
-
 const signup = async (req,res)=>{
        
         const { name, email, password } = req.body;

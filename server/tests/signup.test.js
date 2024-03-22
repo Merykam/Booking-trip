@@ -23,6 +23,7 @@ jest.mock('../utils/sendMail', () => ({
     sendMail: jest.fn(),
 }));
 
+
 describe('Signup Function', () => {
     let req, res, next;
 

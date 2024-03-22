@@ -12,6 +12,7 @@ jest.mock('../models/Hotels');
 jest.mock('validator');
 jest.mock('jsonwebtoken');
 
+
 describe('Insert newPackage Function', () => {
     let req, res;
 

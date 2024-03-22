@@ -4,8 +4,6 @@ const jwt = require('jsonwebtoken');
 const package1 = require('../models/Package')
 
 
-
-
  
 const booking = async (req, res) => {
     const { number_of_seats, packageId } = req.body;

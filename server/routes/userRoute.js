@@ -10,5 +10,4 @@ router.get('/getAllUsers',userController.getAllusers);
 router.get('/updateStatus/:id',userController.updateUserStatus);
 
 
-
 module.exports=router;

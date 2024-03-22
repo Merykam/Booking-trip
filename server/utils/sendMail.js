@@ -11,6 +11,8 @@ const sendMail = async(email, token) => {
 
 }
 
+
+
 module.exports={
     sendMail
 }

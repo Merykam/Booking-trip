@@ -23,5 +23,4 @@ router.delete('/deletePackage/:id',[authenticateJWT, IsAdmin], packageController
 router.get('/packageById/:id', packageController.packageById);
 
 
-
 module.exports=router;

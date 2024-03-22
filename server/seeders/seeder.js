@@ -18,7 +18,6 @@ const citiesData = [
 ];
 
 
-
 const hotelsData = [
   
     { name: 'La Mamounia Marrakech' },

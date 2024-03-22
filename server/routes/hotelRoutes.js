@@ -11,5 +11,4 @@ router.get('/getAllHotels',HotelController.getAllHotels);
 
 
 
-
 module.exports=router;

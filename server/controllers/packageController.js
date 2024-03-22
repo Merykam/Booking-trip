@@ -7,7 +7,6 @@ const multer = require('multer');
 const jwt = require('jsonwebtoken')
 
 
- 
 const insertPackage = async (req, res) => {
     console.log(req.body)
     try {

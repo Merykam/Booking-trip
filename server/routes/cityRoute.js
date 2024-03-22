@@ -11,5 +11,4 @@ router.get('/getAllCities',cityController.getAllCities);
 
 
 
-
 module.exports=router;
