@@ -30,8 +30,6 @@ jobs:
       - name: Run tests
         working-directory: server
         run: |
-          cd Agence-voyage
-          cd Agence-voyage
           ls
           npm test
 
