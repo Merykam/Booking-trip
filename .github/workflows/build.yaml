@@ -19,7 +19,7 @@ jobs:
           node-version: "20.11.0"
 
       - name: Install dependencies
-        run: cd server/Agence-voyage && npm install
+        run:  ls && npm install
         
         # working-directory: server
 
