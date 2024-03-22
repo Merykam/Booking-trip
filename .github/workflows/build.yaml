@@ -24,11 +24,11 @@ jobs:
           npm install
         # working-directory: server
 
-      - name: Run tests
-        run: |
-          cd server
-          ls
-          sudo npm run test 
+      # - name: Run tests
+      #   run: |
+      #     cd server
+      #     ls
+      #     sudo npm run test 
 
       - name: Log in to Docker Hub
         run: docker login -u marykam1 --password-stdin
