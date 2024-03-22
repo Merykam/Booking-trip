@@ -19,7 +19,7 @@ jobs:
           node-version: "20.11.0"
 
       # - name: Install dependencies
-        working-directory: server
+        
       #   run: |
       #     ls 
       #     cd server
@@ -28,6 +28,7 @@ jobs:
       #     ls
 
       - name: Run tests
+        working-directory: server
         run: cd Agence-voyage && npm test
 
       - name: Log in to Docker Hub
