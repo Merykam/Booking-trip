@@ -23,6 +23,7 @@ import Adminprofile from "./src/pages/adminProfile";
 import EditPackage from "./src/pages/EditPackage";
 import Verify from './src/components/verify'
 import PackageDetailsDashboard from "./src/pages/packageDetailsAdmin";
+import History from "./src/pages/history";
 const AppRoutes = () => {
   const dispatch = useDispatch();
   const userInfo = useSelector((state) => state.user.userInfo);
@@ -107,6 +108,10 @@ const AppRoutes = () => {
          <Route
           path="/verify/:id"
           element={<Verify></Verify>}
+        />
+         <Route
+          path="/history"
+          element={<History></History>}
         />
       </Routes>
     </Router>

@@ -1,0 +1,43 @@
+name: Wonderwave CI/CD
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
+      - name: Use Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: "18.12.1"
+
+      - name: Install dependencies
+        run: npm install
+        working-directory: server
+
+      - name: run tests
+        run: cd server/Agence-voyage && npm test
+
+      - name: Log in to Docker Hub
+        run: docker login -u marykam1 --password-stdin
+
+      - name: Tag and push backend image
+        uses: docker/build-push-action@v4
+        with:
+          context: server
+          push: true
+          tags: marykam1/server_docker_hub:latest
+
+      - name: Tag and push frontend image
+        uses: docker/build-push-action@v4
+        with:
+          context: client
+          push: true
+          tags: marykam1/client_docker_hub:latest

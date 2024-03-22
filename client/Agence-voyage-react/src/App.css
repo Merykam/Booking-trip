@@ -1,6 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Yesteryear&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Volkhov:ital,wght@0,400;0,700;1,400;1,700&family=Yesteryear&display=swap');
-
+@import url('https://fonts.googleapis.com/css2?family=Urbanist:ital,wght@0,100..900;1,100..900&family=Volkhov:ital,wght@0,400;0,700;1,400;1,700&family=Yesteryear&display=swap');
 
 :root {
   --hover-easing: cubic-bezier(0.23, 1, 0.32, 1);
@@ -9,7 +9,9 @@
 .bg-sky{
   background-color: rgb(218, 238, 246);
 }
-
+a, p{
+  font-family: "Urbanist", sans-serif;
+}
 
 /* css of success reservation */
 /* .bg-landingpage{
@@ -256,7 +258,7 @@ p+p {
   /* border-bottom-right-radius: 5rem; */
 }
 .travel{
-  font-family: "Yesteryear", cursive;
+  font-family: "Yesteryear", cursive ;
   color: white;
 
 }a

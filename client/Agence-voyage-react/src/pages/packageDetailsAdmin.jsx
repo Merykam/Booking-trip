@@ -176,12 +176,12 @@ const PackageDetailsDashboard = () => {
                 </p>
                 <p class="text-base leading-normal text-black dark:text-white mt-2">
                   <span className="">Trip duration</span> :{" "}
-                  {Package.trip_duration} Days
+                  {Package?.trip_duration} Days
                 </p>
                 <p class="text-base leading-normal text-black dark:text-white mt-2">
                   <span className="">Added By</span> :{" "}
                   <span className="font-bold text-sky-900">
-                    {Package.user_id.name}
+                    {Package?.user_id?.name}
                   </span>
                 </p>
               </div>

@@ -6,24 +6,27 @@ import { useNavigate } from "react-router-dom";
 import axios from "axios";
 
 const profile = () => {
+  const navigate = useNavigate();
 
-    const navigate = useNavigate();
-    const logout = () => {
-      logoutFunction();
-    };
-  
-    const logoutFunction = async () => {
-      try {
-        const response = await axios.get(
-          "http://localhost:4000/api/auth/signout",
-          { withCredentials: true }
-        );
-        console.log(response);
-        navigate("/");
-      } catch (error) {
-        console.error(error);
-      }
-    };
+  const history = () => {
+    navigate("/history");
+  };
+  const logout = () => {
+    logoutFunction();
+  };
+
+  const logoutFunction = async () => {
+    try {
+      const response = await axios.get(
+        "http://localhost:4000/api/auth/signout",
+        { withCredentials: true }
+      );
+      console.log(response);
+      navigate("/");
+    } catch (error) {
+      console.error(error);
+    }
+  };
   const dispatch = useDispatch();
   const getUserData = useSelector((state) => state.user.userInfo);
 
@@ -88,15 +91,23 @@ const profile = () => {
               </p>
               <div className="flex">
                 <div class="pt-12 pb-8">
-                  <button   onClick={() => {
-                    logout();
-                  }} class="bg-orange-700 hover:bg-orange-900 text-white font-bold py-2 px-4 rounded-full">
+                  <button
+                    onClick={() => {
+                      logout();
+                    }}
+                    class="bg-orange-700 hover:bg-orange-900 text-white font-bold py-2 px-4 rounded-full"
+                  >
                     Logout
                   </button>
                 </div>
 
                 <div class="pt-12 pb-8 ms-5">
-                  <button class="border-2 border-orange-700 hover:bg-white text-orange-700 font-bold py-2 px-4 rounded-full">
+                  <button
+                    onClick={() => {
+                      history();
+                    }}
+                    class="border-2 border-orange-700 hover:bg-white text-orange-700 font-bold py-2 px-4 rounded-full"
+                  >
                     View history
                   </button>
                 </div>
