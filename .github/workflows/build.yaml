@@ -43,6 +43,6 @@ jobs:
       - name: Tag and push frontend image
         uses: docker/build-push-action@v4
         with:
-          context: client
+          context: client/Agence-voyage-react
           push: true
           tags: marykam1/client_docker_hub:latest
