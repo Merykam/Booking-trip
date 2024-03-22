@@ -18,6 +18,9 @@ jobs:
         with:
           node-version: "20.11.0"
 
+      - name: server test
+        run:  cd server
+        
       - name: Install dependencies
         run:  ls && npm install
         
