@@ -20,13 +20,13 @@ jobs:
 
       - name: Install dependencies
         run: |
-          cd server
-          cd Agence-voyage && npm install
-        
-        working-directory: server
+          cd Agence-voyage
+          npm install
 
-      - name: run tests
-        run: cd server/Agence-voyage && npm test
+      - name: Run tests
+        run: |
+          cd Agence-voyage
+          npm test
 
       - name: Log in to Docker Hub
         run: docker login -u marykam1 --password-stdin
