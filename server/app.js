@@ -20,7 +20,6 @@ app.use(express.urlencoded());
 const port = process.env.PORT;
 const db = process.env.DATABASE
 
-// teset
 
 app.use(cors({
     origin : "http://localhost:5173",
