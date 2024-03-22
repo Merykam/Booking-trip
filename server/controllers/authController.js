@@ -9,7 +9,7 @@ const signup = async (req,res)=>{
        
         const { name, email, password } = req.body;
 
-      console.log("fffff");
+   
         if (!validator.isLength(name, { min: 1, max: 255 })) {
             return res.status(400).json({ error: 'Le nom est requis.' });
         }
@@ -83,7 +83,6 @@ const signup = async (req,res)=>{
 
     
             const token = jwt.sign({ userId: user }, process.env.JWT_SECRET);
-            console.log(token);
             res.cookie('token',token, {expire : new Date() + 3600000 })
             
 
@@ -126,7 +125,6 @@ const signout = (req,res)=>{
 
           
           
-            console.log(decodedToken);
            
             await User.findOneAndUpdate({ _id: userId }, { isVerified: true });
 
@@ -143,7 +141,6 @@ const signout = (req,res)=>{
     const getUserInfo = async(req,res)=>{
 
         const tokenString = req.headers.cookie;
-        console.log("user tokennnn   :"+tokenString);
         try{
             if(tokenString){
                 const tokenarr = tokenString.split("=")

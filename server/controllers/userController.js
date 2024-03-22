@@ -27,7 +27,7 @@ const getAllusers = async (req,res)=>{
     try{
        const findUser = await User.find({_id:id});
        const findRole = findUser[0].role;
-       console.log("thus iss role"+findRole);
+    //    console.log("thus iss role"+findRole);
        if(findRole=="1"){
 
         const users = await User.findByIdAndUpdate(id, {role : "0"});

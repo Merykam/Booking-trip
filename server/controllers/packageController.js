@@ -8,21 +8,21 @@ const jwt = require('jsonwebtoken')
 
 
 const insertPackage = async (req, res) => {
-    console.log(req.body)
+    // console.log(req.body)
     try {
         const { destination, hotel, depart_date, trip_duration, number_of_seats, price, description, status } = req.body;
 
       
         const tokenString = req.headers.cookie;
-        console.log("this is tocken");
-        console.log("this is it"+tokenString);
+        // console.log("this is tocken");
+        // console.log("this is it"+tokenString);
    
         const tokenarr = tokenString.split("=")
-        console.log(tokenarr);
+        // console.log(tokenarr);
         const token1= tokenarr[1]
-        console.log(token1)
+        // console.log(token1)
         const decodeToken = jwt.verify(token1, process.env.JWT_SECRET);
-        console.log(decodeToken);
+        // console.log(decodeToken);
 
 
         const userId= decodeToken.userId._id;
@@ -88,7 +88,7 @@ const insertPackage = async (req, res) => {
      
         const date = new Date();
 
-        console.log(date);
+        // console.log(date);
 
 
     
@@ -130,17 +130,17 @@ const updatePackage = async (req, res) => {
     const { id } = req.params;
     const { destination, hotel, depart_date, trip_duration, number_of_seats, price, description, status } = req.body;
     const image = req.file ? req.file.filename : undefined;
-    console.log("image :"+image);
+    // console.log("image :"+image);
     const tokenString = req.headers.cookie;
-    console.log("this is tocken");
-    console.log("this is it"+tokenString);
+    // console.log("this is tocken");
+    // console.log("this is it"+tokenString);
 
     const tokenarr = tokenString.split("=")
-    console.log(tokenarr);
+    // console.log(tokenarr);
     const token1= tokenarr[1]
-    console.log(token1)
+    // console.log(token1)
     const decodeToken = jwt.verify(token1, process.env.JWT_SECRET);
-    console.log(decodeToken);
+    // console.log(decodeToken);
 
 
     const departDate = new Date(depart_date);
@@ -203,7 +203,7 @@ const updatePackage = async (req, res) => {
         const oldPackage = await Package.find({_id:id})
         const findSeats = oldPackage[0].number_of_seats;
         const findAvailableSeats = oldPackage[0].available_seats;
-        console.log("findSeats :"+findSeats);
+        // console.log("findSeats :"+findSeats);
 
         
 

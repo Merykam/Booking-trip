@@ -28,8 +28,8 @@ const booking = async (req, res) => {
         const seatsToBook = parseInt(number_of_seats);
         const availableSeats = parseInt(findAvailableSeats);
 
-        console.log(seatsToBook);
-        console.log(availableSeats);
+        // console.log(seatsToBook);
+        // console.log(availableSeats);
         if (seatsToBook > availableSeats) {
             return res.json({ success: false, message: `You can't select more than ${availableSeats} seats.` });
         }else if( seatsToBook<0){
@@ -37,7 +37,7 @@ const booking = async (req, res) => {
         }
 
         const calculSeats = findAvailableSeats - number_of_seats;
-        console.log("calculSeats : " + calculSeats);
+        // console.log("calculSeats : " + calculSeats);
 
         if(calculSeats ==  0){
             await package1.findByIdAndUpdate(packageId,{
@@ -144,7 +144,7 @@ const showUserBooking = async (req, res)=>{
 
     
     const tokenString = req.headers.cookie;
-    console.log("user tokennnn   :"+tokenString);
+    // console.log("user tokennnn   :"+tokenString);
     
     try{
 
@@ -164,7 +164,7 @@ const showUserBooking = async (req, res)=>{
             }
         }).populate('user_id');
 
-        console.log(findBooking);
+        // console.log(findBooking);
         
         res.json({ success: true, Userbooking: findBooking });
         
