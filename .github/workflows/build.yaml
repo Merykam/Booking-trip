@@ -18,21 +18,12 @@ jobs:
         with:
           node-version: "20.11.0"
 
-      # - name: Install dependencies
-        
-      #   run: |
-      #     ls 
-      #     cd server
-      #     ls
-      #     cd Agence-voyage
-      #     ls
+      - name: Install dependencies
+        run : server && npm install
+        working-directory: server
 
       - name: Run tests
-        # working-directory: server
-        run: |
-          cd server
-          cd Agence-voyage
-          ls
+        run: npm run test
 
       - name: Log in to Docker Hub
         run: docker login -u marykam1 --password-stdin
