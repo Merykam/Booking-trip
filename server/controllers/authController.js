@@ -141,6 +141,7 @@ const signout = (req,res)=>{
     const getUserInfo = async(req,res)=>{
 
         const tokenString = req.headers.cookie;
+        console.log("aaaaaa");
         try{
             if(tokenString){
                 const tokenarr = tokenString.split("=")
