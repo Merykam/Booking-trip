@@ -30,7 +30,7 @@ jobs:
       - name: Run tests
         working-directory: server
         run: |
-          ls
+          cd Agence-voyage
           cd Agence-voyage
           ls
           npm test
