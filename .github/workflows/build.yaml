@@ -1,4 +1,5 @@
 name: Wonderwave CI/CD
+
 on:
   push:
     branches:
@@ -18,14 +19,12 @@ jobs:
           node-version: "20.11.0"
 
       - name: Install dependencies
-        run: |
-          cd server
-          cd Agence-voyage && npm install
-        
-        working-directory: server
+        working-directory: server/Agence-voyage
+        run: npm install
 
-      - name: run tests
-        run: cd server/Agence-voyage && npm test
+      - name: Run tests
+        working-directory: server/Agence-voyage
+        run: npm test
 
       - name: Log in to Docker Hub
         run: docker login -u marykam1 --password-stdin
