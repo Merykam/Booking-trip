@@ -34,6 +34,10 @@ const table = () => {
     navigate("/dashboard/edit/" + id);
   };
 
+  const getId = (id) => {
+    navigate("/dashboard/packageBookings/" + id);
+  };
+
   return (
     <div>
       <div class="p-6 px-0 ms-8">
@@ -150,7 +154,12 @@ const table = () => {
           <tbody>
             {allPackages?.map((singlepackage) => (
               <tr>
-                <td class="p-4 border-b border-blue-gray-50">
+                <td
+                  onClick={() => {
+                    getId(singlepackage._id);
+                  }}
+                  class="p-4 border-b border-blue-gray-50"
+                >
                   <div class="flex items-center gap-3">
                     <div class="flex flex-col">
                       <p class="block antialiased font-sans text-sm leading-normal text-blue-gray-900 font-normal">

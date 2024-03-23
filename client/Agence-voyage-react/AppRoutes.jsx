@@ -24,6 +24,7 @@ import EditPackage from "./src/pages/EditPackage";
 import Verify from './src/components/verify'
 import PackageDetailsDashboard from "./src/pages/packageDetailsAdmin";
 import History from "./src/pages/history";
+import PackageReservations from "./src/pages/packageReservations";
 const AppRoutes = () => {
   const dispatch = useDispatch();
   const userInfo = useSelector((state) => state.user.userInfo);
@@ -112,6 +113,10 @@ const AppRoutes = () => {
          <Route
           path="/history"
           element={<History></History>}
+        />
+          <Route
+          path="/dashboard/packageBookings/:id"
+          element={<PackageReservations></PackageReservations>}
         />
       </Routes>
     </Router>

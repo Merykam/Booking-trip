@@ -1,18 +1,19 @@
 import React, { useEffect, useState } from "react";
 import Layout from "./Layout";
 import axios from "axios";
+import { useParams } from "react-router-dom";
 
-const Reservations = () => {
+const PackageReservations = () => {
   const [bookings, setBookings] = useState([]);
-  //   const [status, setStatus] = useState(true);
-  //   console.log(users);
+  const { id } = useParams();
+
   console.log(bookings);
   const showBookings = async () => {
     try {
       const response = await axios.get(
-        "http://localhost:4000/api/booking/getAllBookings"
+        `http://localhost:4000/api/booking/getPackageBookings/${id}`
       );
-      setBookings(response.data.bookings);
+      setBookings(response.data.packageBookings);
     } catch (error) {
       console.error(error);
     }
@@ -180,13 +181,13 @@ const Reservations = () => {
                   </td>
                   <td class="p-4 border-b border-blue-gray-50">
                     <div class="w-max">
-                      <div class="relative flex flex-col items-center  font-sans font-bold uppercase whitespace-nowrap select-none text-center  text-orange-700 py-1 px-2 text-xs rounded-md">
+                      <div class="relative grid items-center font-sans font-bold uppercase whitespace-nowrap select-none  text-orange-700 py-1 px-2 text-xs rounded-md">
                         <img
                           src={`http://localhost:4000/uploads/${booking?.package_id.image}`}
                           alt="John Michael"
                           className="inline-block relative object-cover object-center !rounded-full w-9 h-9 rounded-md"
                         />
-                        {/* <span class="text-center">
+                        {/* <span class="">
                           {booking?.package_id?.destination?.name}
                         </span> */}
                       </div>
@@ -239,4 +240,4 @@ const Reservations = () => {
   );
 };
 
-export default Reservations;
+export default PackageReservations;

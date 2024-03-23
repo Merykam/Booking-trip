@@ -180,6 +180,39 @@ const showUserBooking = async (req, res)=>{
     }
 }
 
+const showPackageBookings = async (req, res)=>{
+
+    const { id } = req.params;
+    
+    
+    try{
+
+       
+
+        
+        const packageBookings = await Booking.find({package_id:id})
+        .populate({
+            path: 'package_id',
+            populate: {
+                path: 'destination hotel',
+                select: 'name',
+            }
+        }).populate('user_id');
+
+        // console.log(findBooking);
+        
+        res.json({ success: true, packageBookings: packageBookings });
+        
+       
+      
+       
+
+
+    }catch{
+
+    }
+}
+
 
 
    
@@ -187,7 +220,8 @@ module.exports={
     booking,
     showBookings,
     showBookById,
-    showUserBooking
+    showUserBooking,
+    showPackageBookings
   
    
 };

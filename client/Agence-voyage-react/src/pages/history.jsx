@@ -2,8 +2,8 @@ import React, { useEffect, useState } from "react";
 import Navbar from "../components/navbar";
 import axios from "axios";
 
-const history = () => {
-  const [history, setHistory] = useState("");
+const History = () => {
+  const [bookingHistory, setBookingHistory] = useState([]);
 
   const showHistories = async () => {
     try {
@@ -11,7 +11,7 @@ const history = () => {
         "http://localhost:4000/api/booking/getUserBooking",
         { withCredentials: true }
       );
-      setHistory(response.data.Userbooking);
+      setBookingHistory(response.data.Userbooking);
     } catch (error) {
       console.error(error);
     }
@@ -20,7 +20,9 @@ const history = () => {
   useEffect(() => {
     showHistories();
   }, []);
-  console.log(history[0]);
+
+  console.log(bookingHistory[0]);
+
   return (
     <div
       className="h-screen"
@@ -31,78 +33,71 @@ const history = () => {
       <Navbar />
 
       <div className="bg-white m-5 rounded-lg">
-        {/* {!history && <div>Loading</div>} */}
-        {history && history.length == 0 ? (
+        {bookingHistory.map((h) => (
           <a
             href="#"
-            class="flex justify-center items-center relative block overflow-hidden rounded-lg border border-gray-100 p-4 sm:p-6 lg:p-8"
+            key={h._id}
+            className="relative block overflow-hidden rounded-lg border border-gray-100 p-4 sm:p-6 lg:p-8"
           >
-            <h1 className="font-bold text-3xl">No history</h1>
-          </a>
-        ) : history && history.length != 0 ? (
-          <a
-            href="#"
-            class="relative block overflow-hidden rounded-lg border border-gray-100 p-4 sm:p-6 lg:p-8"
-          >
-            <span class="absolute inset-x-0 bottom-0 h-2 bg-gradient-to-r from-orange-300 via-blue-500 to-orange-600"></span>
+            <span className="absolute inset-x-0 bottom-0 h-2 bg-gradient-to-r from-orange-300 via-blue-500 to-orange-600"></span>
 
-            <div class="sm:flex sm:justify-between sm:gap-4">
+            <div className="sm:flex sm:justify-between sm:gap-4">
               <div>
-                <h3 class="text-lg font-bold text-gray-900 sm:text-xl">
-                  {history[0]?.package_id?.destination?.name}
+                <h3 className="text-lg font-bold text-gray-900 sm:text-xl">
+                  {h?.package_id?.destination?.name}
                 </h3>
 
-                <p class="mt-1 text-xs font-medium text-gray-600">
-                  By {history[0]?.user_id?.name}
+                <p className="mt-1 text-xs font-medium text-gray-600">
+                  By {h?.user_id?.name}
                 </p>
               </div>
 
-              <div class="hidden sm:block sm:shrink-0">
+              <div className="hidden sm:block sm:shrink-0">
                 <img
                   alt=""
-                  src={`http://localhost:4000/uploads/${history[0]?.package_id?.image}`}
-                  class="size-24 rounded-lg object-cover shadow-sm"
+                  src={`http://localhost:4000/uploads/${h?.package_id?.image}`}
+                  className="size-24 rounded-lg object-cover shadow-sm"
                 />
               </div>
             </div>
 
-            <div class="mt-4">
-              <p class="text-pretty text-sm text-gray-500">
-                {history[0]?.package_id?.hotel?.name}
+            <div className="mt-4">
+              <p className="text-pretty text-sm text-gray-500">
+                {h?.package_id?.hotel?.name}
               </p>
             </div>
 
-            <dl class="mt-6 flex gap-4 sm:gap-6">
-              <div class="flex flex-col">
-                <dt class="text-sm font-medium text-gray-600">
+            <dl className="mt-6 flex gap-4 sm:gap-6">
+              <div className="flex flex-col">
+                <dt className="text-sm font-medium text-gray-600">
                   Reservation date
                 </dt>
-                <dd class="text-xs text-gray-500">
-                  {" "}
-                  {new Date(history[0]?.reservation_date).toLocaleDateString()}
+                <dd className="text-xs text-gray-500">
+                  {new Date(h?.reservation_date).toLocaleDateString()}
                 </dd>
               </div>
 
-              <div class="flex flex-col">
-                <dt class="text-sm font-medium text-gray-600">Depart date</dt>
-                <dd class="text-xs text-gray-500">
+              <div className="flex flex-col">
+                <dt className="text-sm font-medium text-gray-600">Depart date</dt>
+                <dd className="text-xs text-gray-500">
                   {new Date(
-                    history[0]?.package_id?.depart_date
+                    h?.package_id?.depart_date
                   ).toLocaleDateString()}
                 </dd>
               </div>
 
-              <div class="flex flex-col">
-                <dt class="text-sm font-medium text-gray-600">Total price</dt>
-                <dd class="text-xs text-gray-500">
-                  {history[0]?.total_price} $
+              <div className="flex flex-col">
+                <dt className="text-sm font-medium text-gray-600">Total price</dt>
+                <dd className="text-xs text-gray-500">
+                  {h?.total_price} $
                 </dd>
               </div>
             </dl>
           </a>
-        ) : (
+        ))}
+        {bookingHistory.length === 0 && (
           <div className="w-full flex justify-center py-8 font-semibold text-xl">
-            <p>Loading...</p>
+            <p>No history</p>
           </div>
         )}
       </div>
@@ -110,4 +105,4 @@ const history = () => {
   );
 };
 
-export default history;
+export default History;
