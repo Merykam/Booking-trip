@@ -155,7 +155,7 @@ const Sidebar = () => {
               </li>
               <li>
                 <a
-                  href="#"
+                  href="/dashboard/cities"
                   class="hover:text-black relative flex flex-row items-center h-11 focus:outline-none hover:bg-gray-50 text-white border-l-4 border-transparent hover:border-indigo-500 pr-6"
                 >
                   <span class="inline-flex justify-center items-center ml-4">
@@ -179,7 +179,7 @@ const Sidebar = () => {
                   </span>
                 </a>
                 <a
-                  href="#"
+                  href="/dashboard/Hotels"
                   class="hover:text-black relative flex flex-row items-center h-11 focus:outline-none hover:bg-gray-50 text-white border-l-4 border-transparent hover:border-indigo-500 pr-6"
                 >
                   <span class="inline-flex justify-center items-center ml-4">

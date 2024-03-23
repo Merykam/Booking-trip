@@ -25,6 +25,8 @@ import Verify from './src/components/verify'
 import PackageDetailsDashboard from "./src/pages/packageDetailsAdmin";
 import History from "./src/pages/history";
 import PackageReservations from "./src/pages/packageReservations";
+import Cities from "./src/pages/cities";
+import Hotels from "./src/pages/hotels";
 const AppRoutes = () => {
   const dispatch = useDispatch();
   const userInfo = useSelector((state) => state.user.userInfo);
@@ -117,6 +119,14 @@ const AppRoutes = () => {
           <Route
           path="/dashboard/packageBookings/:id"
           element={<PackageReservations></PackageReservations>}
+        />
+           <Route
+          path="/dashboard/cities"
+          element={<Cities></Cities>}
+        />
+        <Route
+          path="/dashboard/hotels"
+          element={<Hotels></Hotels>}
         />
       </Routes>
     </Router>
