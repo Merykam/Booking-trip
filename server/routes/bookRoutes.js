@@ -12,6 +12,8 @@ router.get('/getAllBookings',bookController.showBookings);
 router.get('/getBooking/:id',bookController.showBookById);
 router.get('/getUserBooking',bookController.showUserBooking);
 router.get('/getPackageBookings/:id',bookController.showPackageBookings);
+router.get('/countBookings',bookController.countBookings);
+router.get('/countPrice',bookController.countPrice);
 
 
 

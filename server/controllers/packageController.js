@@ -290,6 +290,15 @@ const packageById = async (req, res) => {
 
 
 
+const countPackage = async (req, res)=>{
+    try{
+        const count = await Package.countDocuments()
+        return res.json({ success: true, count: count });
+    }catch(err){
+        console.log(err);
+    }
+}
+
     
 
 
@@ -301,7 +310,8 @@ module.exports={
     updatePackage,
     getAllPackages,
     deletePackage,
-    packageById
+    packageById,
+    countPackage
   
    
 };

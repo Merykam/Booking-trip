@@ -54,8 +54,20 @@ const getAllusers = async (req,res)=>{
         res.status(500).json({ success: false, error: error.message });
     }
 
+
+}
+
+
+const countUsers = async (req, res)=>{
+    try{
+        const count = await User.countDocuments()
+        return res.json({ success: true, count: count });
+    }catch(err){
+        console.log(err);
+    }
 }
    module.exports={
     getAllusers,
-    updateUserStatus
+    updateUserStatus,
+    countUsers
    }

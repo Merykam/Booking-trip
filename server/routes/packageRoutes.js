@@ -21,6 +21,7 @@ router.post('/updatePackage/:id',[authenticateJWT, IsAdmin, upload], packageCont
 router.get('/getAllPackages', packageController.getAllPackages);
 router.delete('/deletePackage/:id',[authenticateJWT, IsAdmin], packageController.deletePackage);
 router.get('/packageById/:id', packageController.packageById);
+router.get('/countPackage', packageController.countPackage);
 
 
 module.exports=router;

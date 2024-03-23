@@ -213,6 +213,31 @@ const showPackageBookings = async (req, res)=>{
     }
 }
 
+const countBookings = async (req, res)=>{
+    try{
+        const countReservations = await Booking.countDocuments()
+        return res.json({ success: true, countReservations: countReservations });
+    }catch(err){
+        console.log(err);
+    }
+}
+const countPrice = async (req, res)=>{
+    try{
+        const countPrice = await Booking.aggregate([
+            {
+              $group: {
+                _id: null,
+                totalPrice: { $sum: '$total_price' },
+              },
+            },
+          ])
+        return res.json({ success: true, countPrice: countPrice });
+    }catch(err){
+        console.log(err);
+    }
+}
+
+
 
 
    
@@ -221,7 +246,9 @@ module.exports={
     showBookings,
     showBookById,
     showUserBooking,
-    showPackageBookings
+    showPackageBookings,
+    countBookings,
+    countPrice
   
    
 };
