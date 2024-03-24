@@ -25,9 +25,9 @@ const Navbar = ({ to }) => {
             </Link>
           </div>
           <div className="flex items-center space-x-4">
-            {getUserData[0]?.role == "1" ? (
-              <a
-                href="/Dashboard"
+            {getUserData[0]?.role == "1" || getUserData[0]?.role == "2" ? (
+              <Link
+                to="/Dashboard"
                 class="relative text-white bg-color-btn rounded  flex flex-row items-center h-8 focus:outline-none hover:bg-gray-50 text-white border-l-4 border-transparent hover:text-black hover:border-indigo-500 pr-6"
               >
                 <span class="inline-flex justify-center items-center ml-4">
@@ -49,7 +49,7 @@ const Navbar = ({ to }) => {
                 <span class="ml-2 text-sm tracking-wide truncate">
                   Dashboard
                 </span>
-              </a>
+              </Link>
             ) : (
               ""
             )}

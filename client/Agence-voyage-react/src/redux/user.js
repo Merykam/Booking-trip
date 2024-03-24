@@ -3,6 +3,7 @@ import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 
 
+
 export const getUserInfo = createAsyncThunk(
     'user/info',
     async (a=null, thunkAPI) => {
@@ -42,7 +43,8 @@ export const userSlice = createSlice({
   initialState: {
     value: [],
     userInfo:[],
-    errorMessage:""
+    errorMessage:"",
+    display:false
 
   },
   reducers: {
@@ -68,6 +70,7 @@ export const userSlice = createSlice({
       })
       .addCase(getUserInfo.fulfilled,(state, action)=>{
         state.userInfo = action.payload.data.user
+        state.display = !state.display;
         console.log(state.userInfo.user);
       });
   }

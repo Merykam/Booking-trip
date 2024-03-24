@@ -19,7 +19,7 @@ const Login = () => {
 
   useEffect(() => {
     if (userData) {
-      userData.role === "1"
+      userData.role === "2" ||   userData.role === "1" 
         ? navigate("/dashboard")
         : userData.role === "0"
         ? navigate("/")

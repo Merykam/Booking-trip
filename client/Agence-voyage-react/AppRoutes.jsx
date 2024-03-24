@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import {
   Navigate,
   Route,
@@ -21,34 +21,38 @@ import SuccessReservation from "./src/pages/SuccessReservation";
 import Profile from "./src/pages/profile";
 import Adminprofile from "./src/pages/adminProfile";
 import EditPackage from "./src/pages/EditPackage";
-import Verify from './src/components/verify'
+import Verify from "./src/components/verify";
 import PackageDetailsDashboard from "./src/pages/packageDetailsAdmin";
 import History from "./src/pages/history";
 import PackageReservations from "./src/pages/packageReservations";
 import Cities from "./src/pages/cities";
 import Hotels from "./src/pages/hotels";
+
 const AppRoutes = () => {
+  const [loading, setLoading] = useState(true);
   const dispatch = useDispatch();
+
   const userInfo = useSelector((state) => state.user.userInfo);
-  console.log(userInfo.role);
 
   useEffect(() => {
-    dispatch(getUserInfo());
+    const fetchData = async () => {
+      await dispatch(getUserInfo());
+       setLoading(false);
+    };
+
+    fetchData();
   }, []);
 
-  useEffect(() => {
-    if (userInfo) console.log(userInfo[0]?.role);
-  }, [userInfo]);
-
-  const role = userInfo[0]?.role;
-
   const CheckRole = ({ children }) => {
-    if (role == "0") {
+    if (userInfo[0]?.role != "2" && userInfo[0]?.role != "1") {
       return <Navigate to="/" />;
     }
-
     return children;
   };
+
+  if (loading) {
+    return <div>Loading...</div>;
+  }
   return (
     <Router>
       <Routes>
@@ -94,7 +98,7 @@ const AppRoutes = () => {
           element={<SuccessReservation></SuccessReservation>}
         />
 
-          <Route
+        <Route
           path="dashboard/packageDetails/:id"
           element={<PackageDetailsDashboard></PackageDetailsDashboard>}
         />
@@ -108,26 +112,14 @@ const AppRoutes = () => {
           path="/dashboard/edit/:id"
           element={<EditPackage></EditPackage>}
         />
-         <Route
-          path="/verify/:id"
-          element={<Verify></Verify>}
-        />
-         <Route
-          path="/history"
-          element={<History></History>}
-        />
-          <Route
+        <Route path="/verify/:id" element={<Verify></Verify>} />
+        <Route path="/history" element={<History></History>} />
+        <Route
           path="/dashboard/packageBookings/:id"
           element={<PackageReservations></PackageReservations>}
         />
-           <Route
-          path="/dashboard/cities"
-          element={<Cities></Cities>}
-        />
-        <Route
-          path="/dashboard/hotels"
-          element={<Hotels></Hotels>}
-        />
+        <Route path="/dashboard/cities" element={<Cities></Cities>} />
+        <Route path="/dashboard/hotels" element={<Hotels></Hotels>} />
       </Routes>
     </Router>
   );

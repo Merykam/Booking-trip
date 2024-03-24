@@ -8,7 +8,8 @@ const getAllusers = async (req,res)=>{
 
         try{
 
-            const users = await User.find();
+            const users = await User.find({ $or: [{ role: "0" }, { role: "1" }] });
+
     
 
             res.json({ success: true, message:  users});

@@ -1,6 +1,7 @@
 import axios from "axios";
 import React from "react";
 import { useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 const Sidebar = () => {
   const navigate = useNavigate();
   const logout = () => {
@@ -37,8 +38,8 @@ const Sidebar = () => {
                 </div>
               </li>
               <li>
-                <a
-                  href="/Dashboard"
+                <Link
+                  to="/Dashboard"
                   class="relative flex flex-row items-center h-11 focus:outline-none hover:bg-gray-50 text-white border-l-4 border-transparent hover:text-black hover:border-indigo-500 pr-6"
                 >
                   <span class="inline-flex justify-center items-center ml-4">
@@ -60,11 +61,11 @@ const Sidebar = () => {
                   <span class="ml-2 text-sm tracking-wide truncate">
                     Dashboard
                   </span>
-                </a>
+                </Link>
               </li>
               <li>
-                <a
-                  href="/dashboard/reservations"
+                <Link
+                  to="/dashboard/reservations"
                   class="hover:text-black relative flex flex-row items-center h-11 focus:outline-none hover:bg-gray-50 text-white border-l-4 border-transparent hover:border-indigo-500 pr-6"
                 >
                   <span class="inline-flex justify-center items-center ml-4">
@@ -89,11 +90,11 @@ const Sidebar = () => {
                   <span class="px-2 py-0.5 ml-auto text-xs font-medium tracking-wide text-indigo-500 bg-indigo-50 rounded-full">
                     New
                   </span>
-                </a>
+                </Link>
               </li>
               <li>
-                <a
-                  href="/Dashboard/table"
+                <Link
+                  to="/Dashboard/table"
                   class="hover:text-black relative flex flex-row items-center h-11 focus:outline-none hover:bg-gray-50 text-white border-l-4 border-transparent hover:border-indigo-500 pr-6"
                 >
                   <span class="inline-flex justify-center items-center ml-4">
@@ -115,11 +116,11 @@ const Sidebar = () => {
                   <span class="ml-2 text-sm tracking-wide truncate">
                     Packages
                   </span>
-                </a>
+                </Link>
               </li>
               <li>
-                <a
-                  href="#"
+                <Link
+                  to="#"
                   class="hover:text-black relative flex flex-row items-center h-11 focus:outline-none hover:bg-gray-50 text-white border-l-4 border-transparent hover:border-indigo-500 pr-6"
                 >
                   <span class="inline-flex justify-center items-center ml-4">
@@ -144,7 +145,7 @@ const Sidebar = () => {
                   <span class="px-2 py-0.5 ml-auto text-xs font-medium tracking-wide text-red-500 bg-red-50 rounded-full">
                     1.2k
                   </span>
-                </a>
+                </Link>
               </li>
               <li class="px-5">
                 {/* <div class="flex flex-row items-center h-8">
@@ -154,8 +155,8 @@ const Sidebar = () => {
                 </div> */}
               </li>
               <li>
-                <a
-                  href="/dashboard/cities"
+                <Link
+                  to="/dashboard/cities"
                   class="hover:text-black relative flex flex-row items-center h-11 focus:outline-none hover:bg-gray-50 text-white border-l-4 border-transparent hover:border-indigo-500 pr-6"
                 >
                   <span class="inline-flex justify-center items-center ml-4">
@@ -177,9 +178,9 @@ const Sidebar = () => {
                   <span class="ml-2 text-sm tracking-wide truncate">
                     Cities
                   </span>
-                </a>
-                <a
-                  href="/dashboard/Hotels"
+                </Link>
+                <Link
+                  to="/dashboard/Hotels"
                   class="hover:text-black relative flex flex-row items-center h-11 focus:outline-none hover:bg-gray-50 text-white border-l-4 border-transparent hover:border-indigo-500 pr-6"
                 >
                   <span class="inline-flex justify-center items-center ml-4">
@@ -201,11 +202,11 @@ const Sidebar = () => {
                   <span class="ml-2 text-sm tracking-wide truncate">
                     Hotels
                   </span>
-                </a>
+                </Link>
               </li>
               <li>
-                <a
-                  href="/dashboard/users"
+                <Link
+                  to="/dashboard/users"
                   class="hover:text-black relative flex flex-row items-center h-11 focus:outline-none hover:bg-gray-50 text-white border-l-4 border-transparent hover:border-indigo-500 pr-6"
                 >
                   <span class="inline-flex justify-center items-center ml-4">
@@ -230,7 +231,7 @@ const Sidebar = () => {
                   <span class="px-2 py-0.5 ml-auto text-xs font-medium tracking-wide text-green-500 bg-green-50 rounded-full">
                     15
                   </span>
-                </a>
+                </Link>
               </li>
               <li class="px-5">
                 <div class="flex flex-row items-center h-8">
@@ -240,8 +241,8 @@ const Sidebar = () => {
                 </div>
               </li>
               <li>
-                <a
-                  href="/dashboard/profile"
+                <Link
+                  to="/dashboard/profile"
                   class="hover:text-black relative flex flex-row items-center h-11 focus:outline-none hover:bg-gray-50 text-white border-l-4 border-transparent hover:border-indigo-500 pr-6"
                 >
                   <span class="inline-flex justify-center items-center ml-4">
@@ -263,11 +264,11 @@ const Sidebar = () => {
                   <span class="ml-2 text-sm tracking-wide truncate">
                     Profile
                   </span>
-                </a>
+                </Link>
               </li>
               <li>
-                <a
-                  href="#"
+                <Link
+                  to="#"
                   class="hover:text-black relative flex flex-row items-center h-11 focus:outline-none hover:bg-gray-50 text-white border-l-4 border-transparent hover:border-indigo-500 pr-6"
                 >
                   <span class="inline-flex justify-center items-center ml-4">
@@ -295,10 +296,10 @@ const Sidebar = () => {
                   <span class="ml-2 text-sm tracking-wide truncate">
                     Settings
                   </span>
-                </a>
+                </Link>
               </li>
               <li>
-                <a
+                <Link
                   onClick={() => {
                     logout();
                   }}
@@ -323,7 +324,7 @@ const Sidebar = () => {
                   <span class="ml-2 text-sm tracking-wide truncate">
                     Logout
                   </span>
-                </a>
+                </Link>
               </li>
             </ul>
           </div>

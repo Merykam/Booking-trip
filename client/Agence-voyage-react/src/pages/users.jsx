@@ -1,8 +1,15 @@
 import React, { useEffect, useState } from "react";
 import Layout from "./Layout";
 import axios from "axios";
+import { getUserInfo } from "../redux/user";
+import { useDispatch, useSelector } from "react-redux";
 
 const UsersPage = () => {
+  const dispatch = useDispatch();
+  const getUserData = useSelector((state) => state.user.userInfo);
+  useEffect(() => {
+    dispatch(getUserInfo());
+  }, []);
   const [users, setUsers] = useState([]);
   const [status, setStatus] = useState(true);
   console.log(users);
@@ -209,7 +216,8 @@ const UsersPage = () => {
                       15/03/2024
                     </p>
                   </td>
-                  <td class="p-4 border-b border-blue-gray-50">
+
+                  {getUserData[0]?.role == "2" ? <td class="p-4 border-b border-blue-gray-50">
                     <button
                       class="relative align-middle select-none font-sans font-medium text-center uppercase transition-all disabled:opacity-50 disabled:shadow-none disabled:pointer-events-none w-10 max-w-[40px] h-10 max-h-[40px] rounded-lg text-xs text-blue-gray-500 hover:bg-blue-gray-500/10 active:bg-blue-gray-500/30"
                       type="button"
@@ -225,7 +233,8 @@ const UsersPage = () => {
                         </div>
                       </span>
                     </button>
-                  </td>
+                  </td> : "" }
+                 
                 </tr>
               ))}
             </tbody>
