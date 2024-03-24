@@ -2,7 +2,7 @@ const Package = require('../models/Package');
 const City = require('../models/City');
 const Hotel = require('../models/Hotels');
 const validator = require('validator');
-
+const Reservation = require('../models/Reservation')
 const multer = require('multer');
 const jwt = require('jsonwebtoken')
 
@@ -47,6 +47,10 @@ const insertPackage = async (req, res) => {
    
         if (!validator.isNumeric(String(number_of_seats))) {
             return res.status(400).json({ error: 'Number of seats must be a number.' });
+        }
+
+        if (parseFloat(number_of_seats) < 1) {
+            return res.status(400).json({ error: 'number of seats must be greater than or equal to 1.' });
         }
 
      
@@ -153,6 +157,7 @@ const updatePackage = async (req, res) => {
     const userId= decodeToken.userId._id;
     try {
 
+         
         if (!validator.isLength(destination, { min: 1, max: 255 })) {
             return res.status(400).json({ error: 'Destination is required.' });
         }
@@ -173,11 +178,18 @@ const updatePackage = async (req, res) => {
             return res.status(400).json({ error: 'Number of seats must be a number.' });
         }
 
+        if (parseFloat(number_of_seats) < 1) {
+            return res.status(400).json({ error: 'number of seats must be greater than or equal to 1.' });
+        }
+
      
         if (!validator.isNumeric(String(price))) {
             return res.status(400).json({ error: 'Price must be a number.' });
         }
 
+        if (parseFloat(price) < 1) {
+            return res.status(400).json({ error: 'Price must be greater than or equal to 1.' });
+        }
 
         if (!validator.isLength(description, { min: 1, max: 900 })) {
             return res.status(400).json({ error: 'Description is required.' });
@@ -186,7 +198,6 @@ const updatePackage = async (req, res) => {
         if (!['available', 'saturated'].includes(status)) {
             return res.status(400).json({ error: 'Invalid status.' });
         }
-
     
         const findDestination = await City.findOne({ name: destination });
         if (!findDestination) {
@@ -265,6 +276,11 @@ const deletePackage = async (req, res) => {
     const { id } = req.params;
     try {
         const package3 = await Package.findByIdAndDelete(id);
+
+        
+
+        await Reservation.deleteMany({package_id:id})
+
         if (!package3) {
             return res.status(404).json({ success: false, error: 'Package not found' });
         }

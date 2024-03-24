@@ -19,6 +19,21 @@ const hotels = () => {
     }
   };
 
+  
+  const deleteHotel = async (id) => {
+    console.log(id);
+    try {
+      await axios.delete(
+        `http://localhost:4000/api/hotel/deleteHotel/${id}`,
+        { withCredentials: true }
+      );
+
+      setDisplay(!display);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   useEffect(() => {
     showHotels();
   }, [display]);
@@ -79,7 +94,7 @@ const hotels = () => {
                   <button
                     className="bg-red-600 px-2 text-white rounded"
                     onClick={() => {
-                      deletePackage1(singlepackage?._id);
+                      deleteHotel(h?._id);
                     }}
                   >
                     delete

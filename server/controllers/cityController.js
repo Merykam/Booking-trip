@@ -45,8 +45,24 @@ const addCity = async (req,res)=>{
 
 }
 
+const deleteCity = async (req, res) => {
+    const { id } = req.params;
+    try {
+        const city = await City.findByIdAndDelete(id);
+
+        
+
+      
+        return res.json({ success: true, message: 'City deleted successfully' });
+    } catch (error) {
+        return res.status(500).json({ success: false, error: error.message });
+    }
+};
+
+
 module.exports={
     getAllCities, 
-    addCity
+    addCity,
+    deleteCity
 };
 

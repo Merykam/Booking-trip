@@ -44,9 +44,23 @@ const addHotel= async (req,res)=>{
     }
 
 }
+const deleteHotel = async (req, res) => {
+    const { id } = req.params;
+    try {
+        const hotel = await Hotel.findByIdAndDelete(id);
+
+        
+
+      
+        return res.json({ success: true, message: 'Hotel deleted successfully' });
+    } catch (error) {
+        return res.status(500).json({ success: false, error: error.message });
+    }
+};
 
 module.exports={
      getAllHotels, 
-     addHotel
+     addHotel,
+     deleteHotel
 };
 

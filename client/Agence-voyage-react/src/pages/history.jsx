@@ -25,7 +25,7 @@ const History = () => {
 
   return (
     <div
-      className="h-screen"
+      className="h-full"
       style={{
         backgroundImage: `url('https://source.unsplash.com/1L71sPT5XKc')`,
       }}

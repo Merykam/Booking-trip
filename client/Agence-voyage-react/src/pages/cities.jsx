@@ -7,6 +7,9 @@ import CityModel from '../components/DashbordComponents.jsx/cityModel'
 const cities = () => {
   const [cities, setCities] = useState([]);
   const [display, setDisplay] = useState(false);
+  const [delete1, setDelete] = useState(false);
+
+
 
   const showCities = async () => {
     try {
@@ -23,7 +26,22 @@ const cities = () => {
 
   useEffect(() => {
     showCities();
-  }, [display]);
+  }, [display,delete1]);
+
+
+  const deleteCity = async (id) => {
+    console.log(id);
+    try {
+      await axios.delete(
+        `http://localhost:4000/api/city/deleteCity/${id}`,
+        { withCredentials: true }
+      );
+
+      setDelete(!delete1);
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
 
   return (
@@ -81,7 +99,9 @@ const cities = () => {
                 </td>
                 <td class="p-4 border-b border-blue-gray-50">
                   {" "}
-                  <button className="bg-red-600 px-2 text-white rounded">
+                  <button onClick={() => {
+                      deleteCity(c?._id);
+                    }} className="bg-red-600 px-2 text-white rounded">
                     delete
                   </button>
                 </td>
