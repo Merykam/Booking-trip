@@ -88,10 +88,10 @@ const AppRoutes = () => {
         <Route path="/login" element={<Login></Login>} />
         <Route path="/signup" element={<Signup></Signup>} />
         <Route path="/Booking/:id" element={<BookPackage></BookPackage>} />
-        <Route path="/dashboard/users" element={<UsersPage></UsersPage>} />
+        <Route path="/dashboard/users" element={ <CheckRole><UsersPage></UsersPage></CheckRole>} />
         <Route
           path="/dashboard/reservations"
-          element={<Reservations></Reservations>}
+          element={<CheckRole><Reservations></Reservations></CheckRole>}
         />
         <Route
           path="/BookingSuccess/:id"
@@ -100,26 +100,26 @@ const AppRoutes = () => {
 
         <Route
           path="dashboard/packageDetails/:id"
-          element={<PackageDetailsDashboard></PackageDetailsDashboard>}
+          element={<CheckRole><PackageDetailsDashboard></PackageDetailsDashboard></CheckRole>}
         />
 
         <Route path="/profile" element={<Profile></Profile>} />
         <Route
           path="/dashboard/profile"
-          element={<Adminprofile></Adminprofile>}
+          element={<CheckRole><Adminprofile></Adminprofile></CheckRole>}
         />
         <Route
           path="/dashboard/edit/:id"
-          element={<EditPackage></EditPackage>}
+          element={<CheckRole><EditPackage></EditPackage></CheckRole>}
         />
         <Route path="/verify/:id" element={<Verify></Verify>} />
         <Route path="/history" element={<History></History>} />
         <Route
           path="/dashboard/packageBookings/:id"
-          element={<PackageReservations></PackageReservations>}
+          element={<CheckRole><PackageReservations></PackageReservations></CheckRole>}
         />
-        <Route path="/dashboard/cities" element={<Cities></Cities>} />
-        <Route path="/dashboard/hotels" element={<Hotels></Hotels>} />
+        <Route path="/dashboard/cities" element={<CheckRole><Cities></Cities></CheckRole>} />
+        <Route path="/dashboard/hotels" element={ <CheckRole><Hotels></Hotels></CheckRole>} />
       </Routes>
     </Router>
   );

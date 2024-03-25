@@ -3,7 +3,7 @@ version: '3'
 services:
   server:
     build: 
-      context: "./server/Agence-voyage"
+      context: "./server"
       dockerfile: Dockerfile
     image: image-server 
     container_name: server
