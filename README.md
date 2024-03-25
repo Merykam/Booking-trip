@@ -70,13 +70,12 @@ Express js
 
 ## Installation et Exécution
 
-
-Clonez ce dépôt sur votre machine locale.
-Accédez au répertoire du projet.
-Exécutez npm install pour installer les dépendances.
-Executez cd server
-Exécutez "npm run dev" pour démarrer l'application .
-Executez cd client
-Exécutez "npm run dev" pour démarrer l'application front end.
-Pour exécuter les tests, utilisez la commande npm test.
-Pour dockeriser l'application, exécutez docker "docker-compose up".
+- Clonez ce dépôt sur votre machine locale.
+- Accédez au répertoire du projet.
+- Exécutez npm install pour installer les dépendances.
+- Executez cd server
+- Exécutez "npm run dev" pour démarrer l'application .
+- Executez cd client
+- Exécutez "npm run dev" pour démarrer l'application front end.
+- Pour exécuter les tests, utilisez la commande npm test.
+- Pour dockeriser l'application, exécutez docker "docker-copose up".
